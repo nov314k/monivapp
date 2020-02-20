@@ -16,7 +16,6 @@ import com.monivapp.service.UserService;
 @EnableWebSecurity
 public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	// add a reference to our security data source
     @Autowired
     private UserService userService;
 	
@@ -47,24 +46,19 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.logout().permitAll()
 			.and()
-			.exceptionHandling().accessDeniedPage("/access-denied-notice");
-		
+			.exceptionHandling().accessDeniedPage("/access-denied-notice");	
 	}
 	
-	//beans
-	//bcrypt bean definition
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-	//authenticationProvider bean definition
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-		auth.setUserDetailsService(userService); //set the custom user details service
-		auth.setPasswordEncoder(passwordEncoder()); //set the password encoder - bcrypt
+		auth.setUserDetailsService(userService);
+		auth.setPasswordEncoder(passwordEncoder());
 		return auth;
 	}
-	  
 }
