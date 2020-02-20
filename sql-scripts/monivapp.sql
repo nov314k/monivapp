@@ -52,6 +52,19 @@ INSERT INTO `users_roles` (user_id,role_id) VALUES
 (3, 2),
 (3, 3);
 
+DROP TABLE IF EXISTS `movie`;
+CREATE TABLE `movie` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(42) DEFAULT NULL,
+  `votes` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+INSERT INTO `movie` VALUES 
+	(1,'Matrix Part One',2),
+	(2,'Matrix Part Two',1),
+	(3,'Matrix Part Three',0);
+
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `id` int NOT NULL AUTO_INCREMENT,
