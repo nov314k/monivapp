@@ -16,8 +16,8 @@ public class Action {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="user_id")
-	private int user_id;
+	@Column(name="username")
+	private String username;
 	
 	@Column(name="action")
 	private String action;
@@ -25,15 +25,19 @@ public class Action {
 	@Column(name="movie_id")
 	private int movie_id;
 	
+	@Column(name="date")
+	private String date;
+	
 	public Action() {
 		
 	}
 
-	public Action(int user_id, String action, int movie_id) {
+	public Action(String username, String action, int movie_id, String date) {
 		super();
-		this.user_id = user_id;
+		this.username = username;
 		this.action = action;
 		this.movie_id = movie_id;
+		this.date = date;
 	}
 
 	public int getId() {
@@ -44,12 +48,12 @@ public class Action {
 		this.id = id;
 	}
 
-	public int getUser_id() {
-		return user_id;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserName(String username) {
+		this.username = username;
 	}
 
 	public String getAction() {
@@ -66,5 +70,13 @@ public class Action {
 
 	public void setMovie_id(int movie_id) {
 		this.movie_id = movie_id;
+	}
+	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 }

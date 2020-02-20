@@ -30,8 +30,10 @@ public class MovieController {
 	public String listMovies(Model theModel) {
 		List<Movie> theMovies = movieService.getMovies();
 		theModel.addAttribute("movies", theMovies);
+		
 		List<Action> theActions = actionService.getActions();
 		theModel.addAttribute("timesVoted", theActions.size());
+		
 		return "movies-list";
 	}
 	

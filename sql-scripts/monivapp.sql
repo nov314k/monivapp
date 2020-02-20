@@ -68,9 +68,10 @@ INSERT INTO `movie` VALUES
 DROP TABLE IF EXISTS `action`;
 CREATE TABLE `action` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int DEFAULT NULL,
+  `username` varchar(42) DEFAULT NULL,
   `action` varchar(42) DEFAULT NULL,
   `movie_id` int DEFAULT NULL,
+  `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
