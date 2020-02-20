@@ -44,4 +44,12 @@ public class MovieDaoImpl implements MovieDao {
 		theQuery.setParameter("movieId", theId);
 		theQuery.executeUpdate();		
 	}
+	
+	@Override
+	public void vote(int theId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Movie theMovie = this.getMovie(theId);
+		theMovie.setVotes(theMovie.getVotes() + 1);
+		this.saveMovie(theMovie);
+	}
 }

@@ -53,4 +53,10 @@ public class MovieController {
 		movieService.deleteMovie(theId);
 		return "redirect:/movie/list";
 	}
+	
+	@GetMapping("/vote")
+	public String vote(@RequestParam("movieId") int theId) {
+		movieService.vote(theId);
+		return "redirect:/movie/list";
+	}
 }

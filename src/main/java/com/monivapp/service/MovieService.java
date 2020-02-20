@@ -13,4 +13,6 @@ public interface MovieService {
 	public Movie getMovie(int theId);
 
 	public void deleteMovie(int theId);	
+	
+	public void vote(int theId);
 }

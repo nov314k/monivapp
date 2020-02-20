@@ -14,4 +14,6 @@ public interface MovieDao {
 
 	public void deleteMovie(int theId);
 	
+	public void vote(int theId);
+	
 }

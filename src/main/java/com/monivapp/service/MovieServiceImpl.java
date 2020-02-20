@@ -38,4 +38,10 @@ public class MovieServiceImpl implements MovieService {
 	public void deleteMovie(int theId) {
 		movieDao.deleteMovie(theId);
 	}
+	
+	@Override
+	@Transactional
+	public void vote(int theId) {
+		movieDao.vote(theId);
+	}
 }

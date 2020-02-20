@@ -65,15 +65,17 @@
 				<!-- loop over and print our movies -->
 				<c:forEach var="tempMovie" items="${movies}">
 				
-					<!-- construct an "update" link with movie id -->
 					<c:url var="updateLink" value="/movie/showFormForUpdate">
 						<c:param name="movieId" value="${tempMovie.id}" />
 					</c:url>					
 
-					<!-- construct an "delete" link with movie id -->
 					<c:url var="deleteLink" value="/movie/delete">
 						<c:param name="movieId" value="${tempMovie.id}" />
 					</c:url>					
+					
+					<c:url var="voteLink" value="/movie/vote">
+						<c:param name="movieId" value="${tempMovie.id}" />
+					</c:url>
 					
 					<tr>
 						<td> ${tempMovie.title} </td>
@@ -91,6 +93,10 @@
 								<security:authorize access="hasAnyRole('ADMIN')">
 									<a href="${deleteLink}"
 									   onclick="if (!(confirm('Are you sure you want to delete this movie?'))) return false">Delete</a>
+								</security:authorize>
+								
+								<security:authorize access="hasAnyRole('VOTER', 'MAINTAINER', 'ADMIN')">
+									<a href="${voteLink}">Vote</a>
 								</security:authorize>
 							</td>
 
