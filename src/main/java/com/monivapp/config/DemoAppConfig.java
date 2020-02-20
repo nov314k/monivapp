@@ -28,7 +28,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan(basePackages="com.monivapp")
-@PropertySource("mysql.properties")
+@PropertySource("classpath:monivapp.properties")
 public class DemoAppConfig implements WebMvcConfigurer {
 
 	// set up variable to hold the properties

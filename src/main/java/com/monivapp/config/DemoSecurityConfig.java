@@ -32,13 +32,13 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
-			.antMatchers("/").hasRole("EMPLOYEE")
-			.antMatchers("/leaders/**").hasRole("MANAGER")
+			.antMatchers("/").hasRole("VOTER")
+			.antMatchers("/leaders/**").hasRole("MAINTAINER")
 			.antMatchers("/systems/**").hasRole("ADMIN")
-			.antMatchers("/customer/showForm*").hasAnyRole("MANAGER", "ADMIN")
-			.antMatchers("/customer/save*").hasAnyRole("MANAGER", "ADMIN")
+			.antMatchers("/customer/showForm*").hasAnyRole("MAINTAINER", "ADMIN")
+			.antMatchers("/customer/save*").hasAnyRole("MAINTAINER", "ADMIN")
 			.antMatchers("/customer/delete").hasRole("ADMIN")
-			.antMatchers("/customer/**").hasRole("EMPLOYEE")
+			.antMatchers("/customer/**").hasRole("VOTER")
 			.antMatchers("/resources/**").permitAll()
 			.and()
 			.formLogin()
