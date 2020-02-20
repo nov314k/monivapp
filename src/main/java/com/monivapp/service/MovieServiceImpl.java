@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.monivapp.dao.ActionDao;
 import com.monivapp.dao.MovieDao;
+import com.monivapp.entity.Action;
 import com.monivapp.entity.Movie;
 
 @Service
@@ -14,6 +16,9 @@ public class MovieServiceImpl implements MovieService {
 
 	@Autowired
 	private MovieDao movieDao;
+	
+	@Autowired
+	private ActionDao actionDao;
 	
 	@Override
 	@Transactional
@@ -43,5 +48,7 @@ public class MovieServiceImpl implements MovieService {
 	@Transactional
 	public void vote(int theId) {
 		movieDao.vote(theId);
+		Action theAction = new Action(1, "VOTED", 1);
+		actionDao.saveAction(theAction);
 	}
 }

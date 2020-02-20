@@ -64,6 +64,15 @@ INSERT INTO `movie` VALUES
 	(1,'Matrix Part One',2),
 	(2,'Matrix Part Two',1),
 	(3,'Matrix Part Three',0);
+	
+DROP TABLE IF EXISTS `action`;
+CREATE TABLE `action` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `action` varchar(42) DEFAULT NULL,
+  `movie_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
