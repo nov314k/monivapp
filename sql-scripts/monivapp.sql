@@ -14,9 +14,9 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 INSERT INTO `user` (username,password,first_name,last_name,email) VALUES 
-('voter','$2y$12$taX0i1nEwxLBFRbwgLLdde.2V5x55hp/rd8cOYD870Gxcq0qWH4Wm','One','Two','voter@example.com'),
-('maintainer','$2y$12$taX0i1nEwxLBFRbwgLLdde.2V5x55hp/rd8cOYD870Gxcq0qWH4Wm','Three','Four','maintainer@example.com'),
-('admin','$2y$12$taX0i1nEwxLBFRbwgLLdde.2V5x55hp/rd8cOYD870Gxcq0qWH4Wm','Five','Six','admin@example.com');
+('voter','$2a$10$7NtqYWm04eEennIPmp0DeOb2ul6hLPtLiwQzQ5Y0v1H5H7/cJ.qiu','One','Two','voter@example.com'),
+('maintainer','$2a$10$7NtqYWm04eEennIPmp0DeOb2ul6hLPtLiwQzQ5Y0v1H5H7/cJ.qiu','Three','Four','maintainer@example.com'),
+('admin','$2a$10$7NtqYWm04eEennIPmp0DeOb2ul6hLPtLiwQzQ5Y0v1H5H7/cJ.qiu','Five','Six','admin@example.com');
 
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
@@ -26,7 +26,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 INSERT INTO `role` (name) VALUES 
-('VOTER'),('MAINTAINER'),('ADMIN');
+('ROLE_VOTER'),('ROLE_MAINTAINER'),('ROLE_ADMIN');
 
 DROP TABLE IF EXISTS `users_roles`;
 CREATE TABLE `users_roles` (
