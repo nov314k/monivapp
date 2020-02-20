@@ -28,7 +28,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan(basePackages="com.monivapp")
-@PropertySource({"classpath:persistence-mysql.properties", "classpath:data-persistence-mysql.properties"})
+@PropertySource("mysql.properties")
 public class DemoAppConfig implements WebMvcConfigurer {
 
 	// set up variable to hold the properties
@@ -92,6 +92,7 @@ public class DemoAppConfig implements WebMvcConfigurer {
 		return securityDataSource;
 	}
 	
+	// TODO Combine two data sources into one since they are the same?
 	@Bean
 	public DataSource myDataSource() {
 		
@@ -107,19 +108,19 @@ public class DemoAppConfig implements WebMvcConfigurer {
 		}
 		
 		// for sanity's sake, let's log url and user ... just to make sure we are reading the data
-		logger.info("jdbc.url=" + env.getProperty("jdbc.url.data"));
-		logger.info("jdbc.user=" + env.getProperty("jdbc.user.data"));
+		logger.info("jdbc.url=" + env.getProperty("jdbc.url"));
+		logger.info("jdbc.user=" + env.getProperty("jdbc.user"));
 		
 		// set database connection props
-		myDataSource.setJdbcUrl(env.getProperty("jdbc.url.data"));
-		myDataSource.setUser(env.getProperty("jdbc.user.data"));
-		myDataSource.setPassword(env.getProperty("jdbc.password.data"));
+		myDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
+		myDataSource.setUser(env.getProperty("jdbc.user"));
+		myDataSource.setPassword(env.getProperty("jdbc.password"));
 		
 		// set connection pool props
-		myDataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize.data"));
-		myDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize.data"));
-		myDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize.data"));		
-		myDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime.data"));
+		myDataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
+		myDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
+		myDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));		
+		myDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
 
 		return myDataSource;
 	}
@@ -184,19 +185,3 @@ public class DemoAppConfig implements WebMvcConfigurer {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
