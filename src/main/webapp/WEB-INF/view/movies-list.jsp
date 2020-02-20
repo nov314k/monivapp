@@ -34,7 +34,7 @@
 			</p>
 		
 
-			<security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
+			<security:authorize access="hasAnyRole('MAINTAINER', 'ADMIN')">
 			
 				<!-- put new button: Add movie -->
 			
@@ -50,12 +50,11 @@
 		
 			<table>
 				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
+					<th>Title</th>
+					<th>Votes</th>
 					
 					<%-- Only show "Action" column for managers or admin --%>
-					<security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
+					<security:authorize access="hasAnyRole('MAINTAINER', 'ADMIN')">
 					
 						<th>Action</th>
 					
@@ -77,14 +76,14 @@
 					</c:url>					
 					
 					<tr>
-						<td> ${tempMovie.firstName} </td>
-						<td> ${tempMovie.lastName} </td>
-						<td> ${tempMovie.email} </td>
+						<td> ${tempMovie.title} </td>
+						<td> ${tempMovie.votes} </td>
+						
 
-						<security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
+						<security:authorize access="hasAnyRole('MAINTAINER', 'ADMIN')">
 						
 							<td>
-								<security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
+								<security:authorize access="hasAnyRole('MAINTAINER', 'ADMIN')">
 									<!-- display the update link -->
 									<a href="${updateLink}">Update</a>
 								</security:authorize>

@@ -24,21 +24,18 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	@Transactional
 	public void saveMovie(Movie theMovie) {
-
 		movieDao.saveMovie(theMovie);
 	}
 
 	@Override
 	@Transactional
 	public Movie getMovie(int theId) {
-		
 		return movieDao.getMovie(theId);
 	}
 
 	@Override
 	@Transactional
 	public void deleteMovie(int theId) {
-		
 		movieDao.deleteMovie(theId);
 	}
 }

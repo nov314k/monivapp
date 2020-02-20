@@ -25,7 +25,7 @@ public class MovieController {
 	public String listMovies(Model theModel) {
 		List<Movie> theMovies = movieService.getMovies();
 		theModel.addAttribute("movies", theMovies);
-		return "customers-list";
+		return "movies-list";
 	}
 	
 	@GetMapping("/showFormForAdd")
