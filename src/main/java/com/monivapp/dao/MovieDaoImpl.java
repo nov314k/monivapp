@@ -19,7 +19,7 @@ public class MovieDaoImpl implements MovieDao {
 	@Override
 	public List<Movie> getMovies() {
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query<Movie> theQuery = currentSession.createQuery("from Movie order by votes", Movie.class);
+		Query<Movie> theQuery = currentSession.createQuery("from Movie order by votes desc", Movie.class);
 		List<Movie> movies = theQuery.getResultList();		
 		return movies;
 	}
