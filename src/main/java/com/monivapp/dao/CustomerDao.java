@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.monivapp.entity.Customer;
 
-public interface CustomerDAO {
+public interface CustomerDao {
 
 	public List<Customer> getCustomers();
 

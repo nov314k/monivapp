@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.monivapp.dao.CustomerDAO;
+import com.monivapp.dao.CustomerDao;
 import com.monivapp.entity.Customer;
 
 @Service
@@ -14,7 +14,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	// need to inject customer dao
 	@Autowired
-	private CustomerDAO customerDAO;
+	private CustomerDao customerDAO;
 	
 	@Override
 	@Transactional

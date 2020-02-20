@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.monivapp.entity.Customer;
 
 @Repository
-public class CustomerDAOImpl implements CustomerDAO {
+public class CustomerDaoImpl implements CustomerDao {
 
 	// need to inject the session factory
 	@Autowired
