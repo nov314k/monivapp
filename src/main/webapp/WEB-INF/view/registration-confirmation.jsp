@@ -1,17 +1,10 @@
 <html>
-
 <head>
-	<title>Registration Confirmation</title>
+<title>monivapp</title>
 </head>
-
 <body>
-
-	<h2>User registered successfully!</h2>
-
+	<h2>Registration Successful: New user registered</h2>
 	<hr>
-	
-	<a href="${pageContext.request.contextPath}/showMyLoginPage">Login with new user</a>
-	
+	<a href="${pageContext.request.contextPath}/showMyLoginPage">Sign in with new user credentials</a>
 </body>
-
 </html>
