@@ -1,11 +1,8 @@
 DROP DATABASE IF EXISTS `monivapp`;
-
 CREATE DATABASE IF NOT EXISTS `monivapp`;
-
-USE `spring_security_custom_user_demo`;
+USE `monivapp`;
 
 DROP TABLE IF EXISTS `user`;
-
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(42) NOT NULL,
@@ -22,7 +19,6 @@ INSERT INTO `user` (username,password,first_name,last_name,email) VALUES
 ('admin','$2y$12$taX0i1nEwxLBFRbwgLLdde.2V5x55hp/rd8cOYD870Gxcq0qWH4Wm','Five','Six','admin@example.com');
 
 DROP TABLE IF EXISTS `role`;
-
 CREATE TABLE `role` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(42) DEFAULT NULL,
@@ -33,7 +29,6 @@ INSERT INTO `role` (name) VALUES
 ('ROLE_VOTER'),('ROLE_MAINTAINER'),('ROLE_ADMIN');
 
 DROP TABLE IF EXISTS `users_roles`;
-
 CREATE TABLE `users_roles` (
   `user_id` int NOT NULL,
   `role_id` int NOT NULL,  
@@ -55,10 +50,9 @@ INSERT INTO `users_roles` (user_id,role_id) VALUES
 (2, 2),
 (3, 1),
 (3, 2),
-(3, 3)
+(3, 3);
 
 DROP TABLE IF EXISTS `customer`;
-
 CREATE TABLE `customer` (
   `id` int NOT NULL AUTO_INCREMENT,
   `first_name` varchar(42) DEFAULT NULL,
