@@ -27,7 +27,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan(basePackages="com.luv2code.springsecurity.demo")
+@ComponentScan(basePackages="com.monivapp")
 @PropertySource({"classpath:persistence-mysql.properties", "classpath:data-persistence-mysql.properties"})
 public class DemoAppConfig implements WebMvcConfigurer {
 
