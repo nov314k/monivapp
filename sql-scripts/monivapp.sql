@@ -20,7 +20,6 @@ INSERT INTO `user` (username,password,first_name,last_name,email) VALUES
 ('voter','$2y$12$taX0i1nEwxLBFRbwgLLdde.2V5x55hp/rd8cOYD870Gxcq0qWH4Wm','One','Two','voter@example.com'),
 ('maintainer','$2y$12$taX0i1nEwxLBFRbwgLLdde.2V5x55hp/rd8cOYD870Gxcq0qWH4Wm','Three','Four','maintainer@example.com'),
 ('admin','$2y$12$taX0i1nEwxLBFRbwgLLdde.2V5x55hp/rd8cOYD870Gxcq0qWH4Wm','Five','Six','admin@example.com');
-('koliko','$2y$12$taX0i1nEwxLBFRbwgLLdde.2V5x55hp/rd8cOYD870Gxcq0qWH4Wm','Seven','Eight','koliko@example.com');
 
 DROP TABLE IF EXISTS `role`;
 
