@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.monivapp.entity.Action;
 import com.monivapp.entity.Movie;
+import com.monivapp.service.ActionService;
 import com.monivapp.service.MovieService;
 
 @Controller
@@ -21,10 +23,15 @@ public class MovieController {
 	@Autowired
 	private MovieService movieService;
 	
+	@Autowired
+	private ActionService actionService;
+	
 	@GetMapping("/list")
 	public String listMovies(Model theModel) {
 		List<Movie> theMovies = movieService.getMovies();
 		theModel.addAttribute("movies", theMovies);
+		List<Action> theActions = actionService.getActions();
+		theModel.addAttribute("timesVoted", theActions.size());
 		return "movies-list";
 	}
 	

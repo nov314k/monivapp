@@ -29,9 +29,11 @@
 	
 		<div id="content">
 		
-			<p>
-				User: <security:authentication property="principal.username" />, Role(s): <security:authentication property="principal.authorities" />
-			</p>
+<p>
+User: <security:authentication property="principal.username" />
+, role(s): <security:authentication property="principal.authorities" />
+, vote(s): ${timesVoted}
+</p>
 		
 
 			<security:authorize access="hasAnyRole('MAINTAINER', 'ADMIN')">
@@ -82,11 +84,10 @@
 						<td> ${tempMovie.votes} </td>
 						
 
-						<security:authorize access="hasAnyRole('MAINTAINER', 'ADMIN')">
+						<security:authorize access="hasAnyRole('VOTER', 'MAINTAINER', 'ADMIN')">
 						
 							<td>
 								<security:authorize access="hasAnyRole('MAINTAINER', 'ADMIN')">
-									<!-- display the update link -->
 									<a href="${updateLink}">Update</a>
 								</security:authorize>
 	
