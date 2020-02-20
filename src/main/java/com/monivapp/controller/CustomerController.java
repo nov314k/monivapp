@@ -42,7 +42,7 @@ public class CustomerController {
 		
 		theModel.addAttribute("customer", theCustomer);
 		
-		return "customer-form";
+		return "add-customer-form";
 	}
 	
 	@PostMapping("/saveCustomer")
@@ -65,7 +65,7 @@ public class CustomerController {
 		theModel.addAttribute("customer", theCustomer);
 		
 		// send over to our form		
-		return "customer-form";
+		return "add-customer-form";
 	}
 	
 	@GetMapping("/delete")
