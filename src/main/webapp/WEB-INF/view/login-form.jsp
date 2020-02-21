@@ -33,8 +33,8 @@
 	</div>
 	<div class="form-group">
 		<button type="submit" class="btn btn-success">Sign in</button>
-		<a href="register/showRegistrationForm" class="btn btn-primary">Register</a>
-		<a href="movie/list" class="btn btn-warning">View movies</a>
+		<a href="${pageContext.request.contextPath}/register/showRegistrationForm" class="btn btn-primary">Register</a>
+		<a href="${pageContext.request.contextPath}/movie/list" class="btn btn-warning">View movies</a>
 	</div>
 </form:form> 
 </div>
