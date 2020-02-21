@@ -17,9 +17,17 @@
 <h3>Suggest a movie to watch</h3>
 	<form:form action="saveMovie" modelAttribute="movie" method="POST">
 		<form:hidden path="id" />
+		<security:authorize access="hasAnyRole('MAINTAINER')">
+			<form:hidden path="votes" />
+		</security:authorize>
 		<div style="margin-bottom: 15px">
 			<form:input path="title" placeholder="Movie title" class="form-control" />
 		</div>
+		<security:authorize access="hasAnyRole('ADMIN')">
+			<div style="margin-bottom: 15px">
+				<form:input path="votes" class="form-control" />
+			</div>
+		</security:authorize>
 		<button type="submit" class="btn btn-success">Save</button>
 		<a href="${pageContext.request.contextPath}/movie/list" class="btn btn-warning">Cancel</a>
 	</form:form>

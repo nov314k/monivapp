@@ -29,6 +29,13 @@ public class MovieDaoImpl implements MovieDao {
 		Session currentSession = sessionFactory.getCurrentSession();
 		currentSession.saveOrUpdate(theMovie);
 	}
+	
+	// TODO Consider combining with saveMovie
+	@Override
+	public void updateMovie(Movie theMovie) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.update(theMovie);
+	}
 
 	@Override
 	public Movie getMovie(int theId) {

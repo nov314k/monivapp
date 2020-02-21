@@ -28,6 +28,13 @@ public class MovieServiceImpl implements MovieService {
 	public void saveMovie(Movie theMovie) {
 		movieDao.saveMovie(theMovie);
 	}
+	
+	// TODO Consider combining with saveMovie
+	@Override
+	@Transactional
+	public void updateMovie(Movie theMovie) {
+		movieDao.updateMovie(theMovie);
+	}
 
 	@Override
 	@Transactional
