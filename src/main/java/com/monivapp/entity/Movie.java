@@ -25,6 +25,11 @@ public class Movie {
 	public Movie() {
 		
 	}
+	
+	public Movie(String title, int votes) {
+		this.title = title;
+		this.votes = votes;
+	}
 
 	public int getId() {
 		return id;
