@@ -1,51 +1,36 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
-<html>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<!doctype html>
+<html lang="en">
 <head>
-	<title>Save Movie</title>
-
-	<link type="text/css"
-		  rel="stylesheet"
-		  href="${pageContext.request.contextPath}/resources/css/style.css">
-
-	<link type="text/css"
-		  rel="stylesheet"
-		  href="${pageContext.request.contextPath}/resources/css/add-movie-style.css">
+<title>monivapp</title>  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<!-- TODO Are the two below necessary? -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-	
-	<div id="wrapper">
-		<div id="header">
-			<h2>CRM - movie Relationship Manager</h2>
+<div class="container">
+<h3>Suggest a movie to watch</h3>
+	<form:form action="saveMovie" modelAttribute="movie" method="POST">
+		<form:hidden path="id" />
+		<security:authorize access="hasAnyRole('MAINTAINER')">
+			<form:hidden path="votes" />
+		</security:authorize>
+		<div style="margin-bottom: 15px">
+			<form:input path="title" placeholder="Movie title" class="form-control" />
 		</div>
-	</div>
-	<div id="container">
-		<h3>Save movie</h3>
-		<form:form action="saveMovie" modelAttribute="movie" method="POST">
-			<!-- need to associate this data with movie id -->
-			<form:hidden path="id" />
-			<table>
-				<tbody>
-					<tr>
-						<td><label>Title:</label></td>
-						<td><form:input path="title" /></td>
-					</tr>
-					<tr>
-						<td><label>Votes:</label></td>
-						<td><form:input path="votes" /></td>
-					</tr>
-					<tr>
-						<td><label></label></td>
-						<td><input type="submit" value="Save" class="save" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</form:form>
-		<div style="clear; both;"></div>
-		<p>
-			<a href="${pageContext.request.contextPath}/movie/list">Back to List</a>
-		</p>
-	</div>
+		<security:authorize access="hasAnyRole('ADMIN')">
+			<div style="margin-bottom: 15px">
+				<form:input path="votes" class="form-control" />
+			</div>
+		</security:authorize>
+		<button type="submit" class="btn btn-success">Save</button>
+		<a href="${pageContext.request.contextPath}/movie/list" class="btn btn-warning">Cancel</a>
+	</form:form>
+</div>
 </body>
 </html>
