@@ -29,7 +29,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @EnableTransactionManagement
 @ComponentScan(basePackages="com.monivapp")
 @PropertySource("classpath:monivapp.properties")
-public class DemoAppConfig implements WebMvcConfigurer {
+public class AppConfig implements WebMvcConfigurer {
 
 	// set up variable to hold the properties
 	@Autowired
