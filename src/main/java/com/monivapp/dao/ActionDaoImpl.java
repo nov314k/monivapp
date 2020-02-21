@@ -17,11 +17,20 @@ public class ActionDaoImpl implements ActionDao {
 	private SessionFactory sessionFactory;
 			
 	@Override
-	public List<Action> getActions() {
+	public int getNumofRecentActions(String userName, String userAction, String fromDate) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query<Action> theQuery = currentSession.createQuery("from Action", Action.class);
+		// NOTE Not using count(date) for testing purposes
+		Query<Action> theQuery = currentSession.createQuery(
+				"from Action where "
+				+ "username = :userName and "
+				+ "action = :userAction and "
+				+ "date > :fromDate",
+				Action.class);
+		theQuery.setParameter("userName", userName);
+		theQuery.setParameter("userAction", userAction);
+		theQuery.setParameter("fromDate", fromDate);
 		List<Action> actions = theQuery.getResultList();		
-		return actions;
+		return actions.size();
 	}
 
 	@Override
