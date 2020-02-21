@@ -35,10 +35,7 @@ public class MovieController {
 	
 	@Autowired
 	private Environment env;
-	
-	boolean userCanVote = false;
-	boolean userCanAddMovies = false;
-	
+
 	@GetMapping("/list")
 	public String listMovies(Model theModel) {
 		List<Movie> theMovies = movieService.getMovies();
@@ -55,21 +52,11 @@ public class MovieController {
 		int maxNumofAllowedRecentVotes = Integer.parseInt(
 				env.getProperty("maxNumofAllowedRecentVotes"));
 		int numofRemainingVotes = maxNumofAllowedRecentVotes - numofRecentVotes;
-		if (numofRemainingVotes > 0) {
-			theModel.addAttribute("userCanVote", true);
-		} else {
-			theModel.addAttribute("userCanVote", false);
-		}
 		theModel.addAttribute("numofRemainingVotes", numofRemainingVotes);
 		
 		int maxNumofAllowedRecentAdditions = Integer.parseInt(
 				env.getProperty("maxNumofAllowedRecentAdditions"));
 		int numofRemainingAdditions = maxNumofAllowedRecentAdditions - numofRecentAdditions;
-		if (numofRemainingAdditions > 0) {
-			theModel.addAttribute("userCanAddMovies", true);
-		} else {
-			theModel.addAttribute("userCanAddMovies", false);
-		}
 		theModel.addAttribute("numofRemainingAdditions", numofRemainingAdditions);
 
 		return "movies-list";
