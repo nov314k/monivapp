@@ -1,8 +1,12 @@
 package com.monivapp.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -12,9 +16,9 @@ import com.monivapp.dao.ActionDao;
 import com.monivapp.dao.MovieDao;
 import com.monivapp.entity.Action;
 import com.monivapp.entity.Movie;
-import com.monivapp.entity.User;
 
 @Service
+@PropertySource("classpath:monivapp.properties")
 public class MovieServiceImpl implements MovieService {
 
 	@Autowired
@@ -22,6 +26,9 @@ public class MovieServiceImpl implements MovieService {
 	
 	@Autowired
 	private ActionDao actionDao;
+	
+	@Autowired
+	private Environment env;
 	
 	@Override
 	@Transactional
@@ -51,11 +58,16 @@ public class MovieServiceImpl implements MovieService {
 	@Transactional
 	public void vote(int theId) {
 		movieDao.vote(theId);
-		// TODO Consider other options for getting username/id?
+		// TODO Consider other options for getting username/id (cf below)?
 		// https://www.baeldung.com/get-user-in-spring-security
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
-		Action theAction = new Action(currentPrincipalName, "VOTED", theId, "2020-02-21");
+		Action theAction = new Action(currentPrincipalName, env.getProperty("action.voted"),
+				theId, this.getTodaysDate());
 		actionDao.saveAction(theAction);
+	}
+	
+	private String getTodaysDate() {
+		return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 	}
 }
