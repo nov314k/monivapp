@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.monivapp.entity.Action;
 import com.monivapp.entity.Movie;
 import com.monivapp.service.ActionService;
 import com.monivapp.service.MovieService;
@@ -35,25 +36,37 @@ public class MovieController {
 	
 	@Autowired
 	private Environment env;
-
+	
+	private String keywordVoted;
+	private String keywordAdded;
+	private Authentication authentication;
+	private String currentPrincipalName;
+	
 	@GetMapping("/list")
 	public String listMovies(Model theModel) {
+		
+		// TODO Consider this doing in a constructor?
+		// TODO Will they always have a value?
+		this.keywordVoted = env.getProperty("keyword.voted");
+		this.keywordAdded = env.getProperty("keyword.added");
+		this.authentication = SecurityContextHolder.getContext().getAuthentication();
+		this.currentPrincipalName = authentication.getName();
+		
 		List<Movie> theMovies = movieService.getMovies();
 		theModel.addAttribute("movies", theMovies);
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String currentPrincipalName = authentication.getName();
-		
 		int numofRecentVotes = actionService.getNumofRecentActions(
-				currentPrincipalName, env.getProperty("keyword.voted"), getFromDate());
+				currentPrincipalName, keywordVoted, getFromDate());
 		int numofRecentAdditions = actionService.getNumofRecentActions(
-				currentPrincipalName, env.getProperty("keyword.added"), getFromDate());
+				currentPrincipalName, keywordAdded, getFromDate());
 		
+		// Calculate the number of remaining votes
 		int maxNumofAllowedRecentVotes = Integer.parseInt(
 				env.getProperty("maxNumofAllowedRecentVotes"));
 		int numofRemainingVotes = maxNumofAllowedRecentVotes - numofRecentVotes;
 		theModel.addAttribute("numofRemainingVotes", numofRemainingVotes);
 		
+		// Calculate the number of remaining movie additions/suggestions		
 		int maxNumofAllowedRecentAdditions = Integer.parseInt(
 				env.getProperty("maxNumofAllowedRecentAdditions"));
 		int numofRemainingAdditions = maxNumofAllowedRecentAdditions - numofRecentAdditions;
@@ -71,7 +84,9 @@ public class MovieController {
 	
 	@PostMapping("/saveMovie")
 	public String saveMovie(@ModelAttribute("movie") Movie theMovie) {
-		movieService.saveMovie(theMovie);	
+		movieService.saveMovie(theMovie);
+		Action theAction = new Action(currentPrincipalName, keywordAdded, theMovie.getId(), getTodaysDate());
+		actionService.saveAction(theAction);
 		return "redirect:/movie/list";
 	}
 	
@@ -91,6 +106,8 @@ public class MovieController {
 	@GetMapping("/vote")
 	public String vote(@RequestParam("movieId") int theId) {
 		movieService.vote(theId);
+		Action theAction = new Action(currentPrincipalName, keywordVoted, theId, getTodaysDate());
+		actionService.saveAction(theAction);
 		return "redirect:/movie/list";
 	}
 	
@@ -101,5 +118,9 @@ public class MovieController {
         c.add(Calendar.MONTH, -1);
         Date fromDate = c.getTime();
         return new SimpleDateFormat("yyyy-MM-dd").format(fromDate);
+	}
+	
+	private String getTodaysDate() {
+		return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 	}
 }
