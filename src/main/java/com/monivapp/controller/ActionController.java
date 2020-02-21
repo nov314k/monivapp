@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.monivapp.entity.Action;
 import com.monivapp.service.ActionService;
@@ -25,5 +26,11 @@ public class ActionController {
 		List<Action> theActions = actionService.getActions();
 		theModel.addAttribute("actions", theActions);	
 		return "actions-list";
+	}
+	
+	@GetMapping("/delete")
+	public String deleteAction(@RequestParam("actionId") int theId) {
+		actionService.deleteAction(theId);
+		return "redirect:/action/list";
 	}
 }

@@ -35,4 +35,10 @@ public class ActionServiceImpl implements ActionService {
 	public List<Action> getActions() {
 		return actionDao.getActions();
 	}
+	
+	@Override
+	@Transactional
+	public void deleteAction(int theId) {
+		actionDao.deleteAction(theId);
+	}
 }

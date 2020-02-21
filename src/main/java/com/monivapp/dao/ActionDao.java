@@ -11,4 +11,6 @@ public interface ActionDao {
 	public void saveAction(Action theAction);
 
 	List<Action> getActions();	
+	
+	public void deleteAction(int theId);
 }

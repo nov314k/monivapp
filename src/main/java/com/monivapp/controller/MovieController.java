@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 
 import com.monivapp.entity.Action;
 import com.monivapp.entity.Movie;
@@ -87,6 +88,12 @@ public class MovieController {
 		movieService.saveMovie(theMovie);
 		Action theAction = new Action(currentPrincipalName, keywordAdded, theMovie.getId(), getTodaysDate());
 		actionService.saveAction(theAction);
+		
+		final String uri = "https://www.omdbapi.com/?apikey=553bde87&t=matrix";
+		RestTemplate restTemplate = new RestTemplate();
+	    String result = restTemplate.getForObject(uri, String.class);
+	    System.out.println(result);
+		
 		return "redirect:/movie/list";
 	}
 	

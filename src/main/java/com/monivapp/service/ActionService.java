@@ -11,4 +11,6 @@ public interface ActionService {
 	public void saveAction(Action theAction);
 
 	public List<Action> getActions();
+	
+	public void deleteAction(int theId);
 }

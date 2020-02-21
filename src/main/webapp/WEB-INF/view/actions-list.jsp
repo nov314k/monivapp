@@ -13,6 +13,7 @@
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<security:authorize access="hasAnyRole('ADMIN')">
 <div class="container">
 <h3>Movie Night Voting App</h3>
 <table class="table table-bordered table-striped">
@@ -22,17 +23,25 @@
 		<th>action</th>
 		<th>movie_id</th>
 		<th>date</th>
+		<th>ADMINISTRATION</th>
 	</tr>
 	</thead>
 	<c:forEach var="tempAction" items="${actions}">
+		<c:url var="deleteLink" value="/action/delete">
+			<c:param name="actionId" value="${tempAction.id}" />
+		</c:url>
 		<tr>
 			<td>${tempAction.username}</td>
 			<td>${tempAction.action}</td>
 			<td>${tempAction.movie_id}</td>
 			<td>${tempAction.date}</td>
+			<td>
+				<a href="${deleteLink}" class="btn btn-danger btn-sm">Delete</a>
+			</td>
 		</tr>
 	</c:forEach>					
 </table>
 </div>
+</security:authorize>
 </body>
 </html>
