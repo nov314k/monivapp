@@ -1,7 +1,5 @@
 package com.monivapp.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,8 +15,8 @@ public class ActionServiceImpl implements ActionService {
 	
 	@Override
 	@Transactional
-	public List<Action> getActions() {
-		return actionDao.getActions();
+	public int getNumofRecentActions(String userName, String userAction, String fromDate) {
+		return actionDao.getNumofRecentActions(userName, userAction, fromDate);
 	}
 
 	@Override
