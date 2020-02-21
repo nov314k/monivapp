@@ -89,7 +89,7 @@ public class MovieController {
 		Action theAction = new Action(currentPrincipalName, keywordAdded, theMovie.getId(), getTodaysDate());
 		actionService.saveAction(theAction);
 		
-		final String uri = "https://www.omdbapi.com/?apikey=553bde87&t=matrix";
+		final String uri = "https://www.omdbapi.com/?apikey=553bde87&s=matrix";
 		RestTemplate restTemplate = new RestTemplate();
 	    String result = restTemplate.getForObject(uri, String.class);
 	    System.out.println(result);
