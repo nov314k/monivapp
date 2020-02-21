@@ -30,12 +30,16 @@
 		<c:url var="deleteLink" value="/action/delete">
 			<c:param name="actionId" value="${tempAction.id}" />
 		</c:url>
+		<c:url var="updateLink" value="/action/showFormForUpdate">
+			<c:param name="actionId" value="${tempAction.id}" />
+		</c:url>
 		<tr>
 			<td>${tempAction.username}</td>
 			<td>${tempAction.action}</td>
 			<td>${tempAction.movie_id}</td>
 			<td>${tempAction.date}</td>
 			<td>
+				<a href="${updateLink}" class="btn btn-warning btn-sm">Update</a>
 				<a href="${deleteLink}" class="btn btn-danger btn-sm">Delete</a>
 			</td>
 		</tr>

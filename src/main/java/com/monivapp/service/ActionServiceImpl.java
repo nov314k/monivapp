@@ -29,6 +29,12 @@ public class ActionServiceImpl implements ActionService {
 	public void saveAction(Action theAction) {
 		actionDao.saveAction(theAction);
 	}
+	
+	@Override
+	@Transactional
+	public void updateAction(Action theAction) {
+		actionDao.updateAction(theAction);
+	}
 
 	@Override
 	@Transactional
@@ -40,5 +46,11 @@ public class ActionServiceImpl implements ActionService {
 	@Transactional
 	public void deleteAction(int theId) {
 		actionDao.deleteAction(theId);
+	}
+	
+	@Override
+	@Transactional
+	public Action getAction(int theId) {
+		return actionDao.getAction(theId);
 	}
 }

@@ -7,10 +7,13 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.monivapp.entity.Action;
+import com.monivapp.entity.Movie;
 import com.monivapp.service.ActionService;
 
 @Controller
@@ -31,6 +34,19 @@ public class ActionController {
 	@GetMapping("/delete")
 	public String deleteAction(@RequestParam("actionId") int theId) {
 		actionService.deleteAction(theId);
+		return "redirect:/action/list";
+	}
+	
+	@GetMapping("/showFormForUpdate")
+	public String showFormForUpdate(@RequestParam("actionId") int theId, Model theModel) {
+		Action theAction = actionService.getAction(theId);	
+		theModel.addAttribute("action", theAction);
+		return "update-action-form";
+	}
+	
+	@PostMapping("/update")
+	public String updateAction(@ModelAttribute("action") Action theAction) {
+		actionService.saveAction(theAction);
 		return "redirect:/action/list";
 	}
 }
