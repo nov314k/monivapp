@@ -62,7 +62,7 @@ public class MovieServiceImpl implements MovieService {
 		// https://www.baeldung.com/get-user-in-spring-security
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
-		Action theAction = new Action(currentPrincipalName, env.getProperty("action.voted"),
+		Action theAction = new Action(currentPrincipalName, env.getProperty("keyword.voted"),
 				theId, this.getTodaysDate());
 		actionDao.saveAction(theAction);
 	}
