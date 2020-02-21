@@ -90,11 +90,24 @@ public class MovieController {
 		return "redirect:/movie/list";
 	}
 	
+	@PostMapping("/updateMovie")
+	public String updateMovie(@ModelAttribute("movie") Movie theMovie) {
+		movieService.saveMovie(theMovie);
+		return "redirect:/movie/list";
+	}
+	
+	@GetMapping("/showFormForSave")
+	public String showFormForSave(@RequestParam("movieId") int theId, Model theModel) {
+		Movie theMovie = movieService.getMovie(theId);	
+		theModel.addAttribute("movie", theMovie);
+		return "add-movie-form";
+	}
+	
 	@GetMapping("/showFormForUpdate")
 	public String showFormForUpdate(@RequestParam("movieId") int theId, Model theModel) {
 		Movie theMovie = movieService.getMovie(theId);	
 		theModel.addAttribute("movie", theMovie);
-		return "add-movie-form";
+		return "update-movie-form";
 	}
 	
 	@GetMapping("/delete")
