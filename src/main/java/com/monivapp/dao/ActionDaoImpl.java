@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.monivapp.entity.Action;
-import com.monivapp.entity.Movie;
 
 @Repository
 public class ActionDaoImpl implements ActionDao {

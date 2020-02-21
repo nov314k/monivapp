@@ -47,7 +47,6 @@ public class MovieDaoImpl implements MovieDao {
 	
 	@Override
 	public void vote(int theId) {
-		Session currentSession = sessionFactory.getCurrentSession();
 		Movie theMovie = this.getMovie(theId);
 		theMovie.setVotes(theMovie.getVotes() + 1);
 		this.saveMovie(theMovie);

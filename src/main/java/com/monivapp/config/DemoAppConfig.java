@@ -36,6 +36,7 @@ public class DemoAppConfig implements WebMvcConfigurer {
 	private Environment env;
 	
 	// set up a logger for diagnostics
+	// TODO This is a test
 	private Logger logger = Logger.getLogger(getClass().getName());
 	
 	
