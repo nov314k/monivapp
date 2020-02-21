@@ -26,7 +26,7 @@
 					class="btn btn-primary btn-sm mb-3" />
 		   	</c:when>
 		   	<c:otherwise>
-		   		<div class="font-italic">You have used up movie suggestions!</div>
+		   		&nbsp;
 		   	</c:otherwise>
 		</c:choose>
 		<input type="submit" value="Sign out" class="btn btn-primary btn-sm mb-3" />
