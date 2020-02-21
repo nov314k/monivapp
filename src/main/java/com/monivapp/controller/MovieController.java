@@ -66,9 +66,9 @@ public class MovieController {
 				env.getProperty("maxNumofAllowedRecentAdditions"));
 		int numofRemainingAdditions = maxNumofAllowedRecentAdditions - numofRecentAdditions;
 		if (numofRemainingAdditions > 0) {
-			theModel.addAttribute("userCanAddMovies", 1);
+			theModel.addAttribute("userCanAddMovies", true);
 		} else {
-			theModel.addAttribute("userCanAddMovies", 0);
+			theModel.addAttribute("userCanAddMovies", false);
 		}
 		theModel.addAttribute("numofRemainingAdditions", numofRemainingAdditions);
 
