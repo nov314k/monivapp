@@ -17,8 +17,11 @@
 <div id="container">
 	<div id="content">
 <p>
-User: <security:authentication property="principal.username" /><br />
-You have ${numofRemainingVotes} votes, and you can add ${numofRemainingAdditions} movies.
+Hello <security:authentication property="principal.username" />!<br />
+You have ${numofRemainingVotes} votes remaining, and you can add ${numofRemainingAdditions} movies.<br />
+In the period of one calendar month from today's date,
+you can vote 3 times, and you can suggest 3 new movies to watch.<br />
+You can vote for the same movie multiple times. 
 </p>
 <security:authorize access="hasAnyRole('MAINTAINER', 'ADMIN')">
 	<c:choose>
@@ -28,7 +31,7 @@ You have ${numofRemainingVotes} votes, and you can add ${numofRemainingAdditions
 			   class="add-button" />
 	    </c:when>
 	    <c:otherwise>
-	    	You cannot add movies.
+	    	You cannot add any more movies in this time period
 	    </c:otherwise>
 	</c:choose>
 </security:authorize>
@@ -67,7 +70,7 @@ You have ${numofRemainingVotes} votes, and you can add ${numofRemainingAdditions
 	    					<a href="${voteLink}">Vote</a>		
 	    				</c:when>
 	    				<c:otherwise>
-	    					You have no votes remaining!
+	    					You have no votes remaining in this time period
 	    				</c:otherwise>
 					</c:choose>
 				</security:authorize>
