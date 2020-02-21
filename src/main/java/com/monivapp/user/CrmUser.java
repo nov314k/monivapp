@@ -7,33 +7,33 @@ import com.monivapp.validation.FieldMatch;
 import com.monivapp.validation.ValidEmail;
 
 @FieldMatch.List({
-    @FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")
+    @FieldMatch(first = "password", second = "matchingPassword", message = "Two password fields must match")
 })
 public class CrmUser {
 
-	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
+	@NotNull(message = "This field is required")
+	@Size(min = 1, message = "This field is required")
 	private String userName;
 
-	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
+	@NotNull(message = "This field is required")
+	@Size(min = 1, message = "This field is required")
 	private String password;
 	
-	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
+	@NotNull(message = "This field is required")
+	@Size(min = 1, message = "This field is required")
 	private String matchingPassword;
 
-	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
+	@NotNull(message = "This field is required")
+	@Size(min = 1, message = "This field is required")
 	private String firstName;
 
-	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
+	@NotNull(message = "This field is required")
+	@Size(min = 1, message = "This field is required")
 	private String lastName;
 
 	@ValidEmail
-	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
+	@NotNull(message = "This field is required")
+	@Size(min = 1, message = "This field is required")
 	private String email;
 
 	public CrmUser() {
@@ -87,5 +87,4 @@ public class CrmUser {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 }
