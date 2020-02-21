@@ -33,7 +33,6 @@ public class Action {
 	}
 
 	public Action(String username, String action, int movie_id, String date) {
-		super();
 		this.username = username;
 		this.action = action;
 		this.movie_id = movie_id;
