@@ -1,13 +1,18 @@
 package com.monivapp.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.monivapp.dao.ActionDao;
 import com.monivapp.entity.Action;
+import com.monivapp.entity.Movie;
 
 @Service
+@PropertySource("classpath:monivapp.properties")
 public class ActionServiceImpl implements ActionService {
 
 	@Autowired
@@ -23,5 +28,11 @@ public class ActionServiceImpl implements ActionService {
 	@Transactional
 	public void saveAction(Action theAction) {
 		actionDao.saveAction(theAction);
+	}
+
+	@Override
+	@Transactional
+	public List<Action> getActions() {
+		return actionDao.getActions();
 	}
 }
