@@ -25,6 +25,11 @@
 			You have successfully signed out
 		</div>	   					
 	</c:if>
+	<c:if test="${registrationSuccess != null}">
+		<div class="alert alert-success col-md-4">
+			${registrationSuccess}
+		</div>	   					
+	</c:if>
 	<div style="margin-bottom: 15px">
 		<input class="form-control col-md-4" type="text" name="username" placeholder="Username">
 	</div>
