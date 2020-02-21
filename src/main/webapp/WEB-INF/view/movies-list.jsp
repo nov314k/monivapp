@@ -13,7 +13,6 @@
 <body>
 <div class="container">
 <h3>Movie Night Voting App</h3>
-<div id="content">
 <security:authorize access="hasAnyRole('VOTER', 'MAINTAINER', 'ADMIN')">
 	<p>
 	Hello <security:authentication property="principal.username" />!
@@ -27,18 +26,25 @@
 					class="btn btn-primary btn-sm mb-3" />
 		   	</c:when>
 		   	<c:otherwise>
-		   		<div class="font-italic">Suggesting a movie is not available!</div>
+		   		<div class="font-italic">You have used up movie suggestions!</div>
 		   	</c:otherwise>
 		</c:choose>
 		<input type="submit" value="Sign out" class="btn btn-primary btn-sm mb-3" />
 	</form:form>
 </security:authorize>
+<security:authorize access="!hasAnyRole('VOTER', 'MAINTAINER', 'ADMIN')">
+<input type="button" value="Sign in to vote and suggest movies to watch"
+	onclick="window.location.href='showMyLoginPage'; return false;"
+	class="btn btn-primary btn-sm mb-3" />
+</security:authorize>
 <table class="table table-bordered table-striped">
  	<thead class="thead-dark">
 	<tr>
-		<th>Title</th>
+		<th>Movie Title</th>
 		<th>Votes</th>
-		<th>Action</th>
+		<security:authorize access="hasAnyRole('VOTER', 'MAINTAINER', 'ADMIN')">
+			<th>Available Actions</th>
+		</security:authorize>
 	</tr>
 	</thead>
 	<c:forEach var="tempMovie" items="${movies}">
@@ -54,35 +60,36 @@
 		<tr>
 			<td>${tempMovie.title}</td>
 			<td>${tempMovie.votes}</td>
-			<td>
-				<security:authorize access="hasAnyRole('ADMIN')">
-					<a href="${deleteLink}" class="btn btn-danger btn-sm"
-				   		onclick="if (!(confirm('Are you sure you want to delete this movie?'))) return false">Delete</a>
-				</security:authorize>
-				<security:authorize access="hasAnyRole('MAINTAINER', 'ADMIN')">
-					<a href="${updateLink}" class="btn btn-warning btn-sm">Update</a>
-				</security:authorize>
-				<security:authorize access="hasAnyRole('VOTER', 'MAINTAINER', 'ADMIN')">
+			<security:authorize access="hasAnyRole('VOTER', 'MAINTAINER', 'ADMIN')">
+				<td>
+					<security:authorize access="hasAnyRole('ADMIN')">
+						<a href="${deleteLink}" class="btn btn-danger btn-sm"
+					   		onclick="if (!(confirm('Are you sure you want to delete this movie?'))) return false">Delete</a>
+					</security:authorize>
+					<security:authorize access="hasAnyRole('MAINTAINER', 'ADMIN')">
+						<a href="${updateLink}" class="btn btn-warning btn-sm">Update</a>
+					</security:authorize>
 					<c:choose>
 						<c:when test="${numofRemainingVotes > 0}">
-	    					<a href="${voteLink}" class="btn btn-success btn-sm">Vote</a>
-	    				</c:when>
-	    				<c:otherwise>
-	    					<div class="font-italic">You have used up your votes!</div>
-	    				</c:otherwise>
+		    				<a href="${voteLink}" class="btn btn-success btn-sm">Vote</a>
+		    			</c:when>
+		    			<c:otherwise>
+		    				&nbsp;
+		    			</c:otherwise>
 					</c:choose>
-				</security:authorize>
-			</td>
+				</td>
+			</security:authorize>
 		</tr>
 	</c:forEach>					
 </table>
+<security:authorize access="hasAnyRole('VOTER', 'MAINTAINER', 'ADMIN')">
 <p>
 In the period of one calendar month from today's date,
 you can vote 3 times, and you can suggest 3 new movies to watch.
 You can vote for the same movie multiple times.
 <security:authentication property="principal.authorities" />
 </p>
-</div>
+</security:authorize>
 </div>
 </body>
 </html>
