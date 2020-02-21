@@ -31,17 +31,13 @@ public class RegistrationController {
     
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
-		
 		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-		
 		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}	
 	
 	@GetMapping("/showRegistrationForm")
-	public String showMyLoginPage(Model theModel) {
-		
+	public String showMyLoginPage(Model theModel) {	
 		theModel.addAttribute("crmUser", new CrmUser());
-		
 		return "registration-form";
 	}
 
@@ -50,29 +46,27 @@ public class RegistrationController {
 				@Valid @ModelAttribute("crmUser") CrmUser theCrmUser, 
 				BindingResult theBindingResult, 
 				Model theModel) {
-		
 		String userName = theCrmUser.getUserName();
 		logger.info("Processing registration form for: " + userName);
-		
-		// form validation
-		 if (theBindingResult.hasErrors()){
-			 return "registration-form";
-	        }
+		if (theBindingResult.hasErrors()){
+			return "registration-form";
+	    }
 
-		// check the database if user already exists
+		// Check the database if user already exists
         User existing = userService.findByUserName(userName);
-        if (existing != null){
+        if (existing != null) {
         	theModel.addAttribute("crmUser", new CrmUser());
 			theModel.addAttribute("registrationError", "User name already exists");
 
 			logger.warning("User name already exists");
         	return "registration-form";
         }
-     // create user account        						
+        // Create user account        						
         userService.save(theCrmUser);
-        
+        theModel.addAttribute("registrationSuccess",
+        		"You have registered successfully<br />Please sign in to MoNiVApp");
         logger.info("Successfully created user: " + userName);
-        
-        return "registration-confirmation";		
+ 
+        return "login-form";		
 	}
 }
