@@ -26,7 +26,7 @@ import com.monivapp.service.MovieService;
 
 @Controller
 @RequestMapping("/movie")
-@PropertySource("classpath:monivapp.properties")
+@PropertySource("classpath:application.properties")
 public class MovieController {
 
 	@Autowired
@@ -89,10 +89,11 @@ public class MovieController {
 		Action theAction = new Action(currentPrincipalName, keywordAdded, theMovie.getId(), getTodaysDate());
 		actionService.saveAction(theAction);
 		
-		final String uri = "https://www.omdbapi.com/?apikey=553bde87&s=matrix";
-		RestTemplate restTemplate = new RestTemplate();
-	    String result = restTemplate.getForObject(uri, String.class);
-	    System.out.println(result);
+		// Experimenti
+		//final String uri = "https://www.omdbapi.com/?apikey=553bde87&s=matrix";
+		//RestTemplate restTemplate = new RestTemplate();
+	    //String result = restTemplate.getForObject(uri, String.class);
+	    //System.out.println(result);
 		
 		return "redirect:/movie/list";
 	}
