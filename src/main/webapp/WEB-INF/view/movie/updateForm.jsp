@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="container">
-<h3>Update a movie</h3>
+<h3>Update a suggested movie</h3>
 	<form:form action="update" modelAttribute="movie" method="POST">
 		<form:hidden path="id" />
 		<div style="margin-bottom: 15px">
