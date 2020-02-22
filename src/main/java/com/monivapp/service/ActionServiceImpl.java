@@ -12,7 +12,7 @@ import com.monivapp.entity.Action;
 import com.monivapp.entity.Movie;
 
 @Service
-@PropertySource("classpath:monivapp.properties")
+@PropertySource("classpath:application.properties")
 public class ActionServiceImpl implements ActionService {
 
 	@Autowired
