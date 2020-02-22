@@ -18,7 +18,7 @@ import com.monivapp.service.ActionService;
 
 @Controller
 @RequestMapping("/action")
-@PropertySource("classpath:monivapp.properties")
+@PropertySource("classpath:application.properties")
 public class ActionController {
 
 	@Autowired
