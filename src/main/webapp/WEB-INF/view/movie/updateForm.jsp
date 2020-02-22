@@ -15,7 +15,7 @@
 <body>
 <div class="container">
 <h3>Update a movie</h3>
-	<form:form action="updateMovie" modelAttribute="movie" method="POST">
+	<form:form action="update" modelAttribute="movie" method="POST">
 		<form:hidden path="id" />
 		<div style="margin-bottom: 15px">
 			<form:input path="title" placeholder="Movie title" class="form-control" />

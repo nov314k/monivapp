@@ -73,17 +73,10 @@ public class MovieController {
 		int numofRemainingAdditions = maxNumofAllowedRecentAdditions - numofRecentAdditions;
 		theModel.addAttribute("numofRemainingAdditions", numofRemainingAdditions);
 
-		return "movies-list";
+		return "movie/list";
 	}
 	
-	@GetMapping("/showFormForAdd")
-	public String showFormForAdd(Model theModel) {
-		Movie theMovie = new Movie();
-		theModel.addAttribute("movie", theMovie);
-		return "add-movie-form";
-	}
-	
-	@PostMapping("/saveMovie")
+	@PostMapping("/add")
 	public String saveMovie(@ModelAttribute("movie") Movie theMovie) {
 		movieService.saveMovie(theMovie);
 		Action theAction = new Action(currentPrincipalName, keywordAdded, theMovie.getId(), getTodaysDate());
@@ -98,24 +91,18 @@ public class MovieController {
 		return "redirect:/movie/list";
 	}
 	
-	@PostMapping("/updateMovie")
+	@GetMapping("/vote")
+	public String vote(@RequestParam("movieId") int theId) {
+		movieService.vote(theId);
+		Action theAction = new Action(currentPrincipalName, keywordVoted, theId, getTodaysDate());
+		actionService.saveAction(theAction);
+		return "redirect:/movie/list";
+	}	
+	
+	@PostMapping("/update")
 	public String updateMovie(@ModelAttribute("movie") Movie theMovie) {
 		movieService.saveMovie(theMovie);
 		return "redirect:/movie/list";
-	}
-	
-	@GetMapping("/showFormForSave")
-	public String showFormForSave(@RequestParam("movieId") int theId, Model theModel) {
-		Movie theMovie = movieService.getMovie(theId);	
-		theModel.addAttribute("movie", theMovie);
-		return "add-movie-form";
-	}
-	
-	@GetMapping("/showFormForUpdate")
-	public String showFormForUpdate(@RequestParam("movieId") int theId, Model theModel) {
-		Movie theMovie = movieService.getMovie(theId);	
-		theModel.addAttribute("movie", theMovie);
-		return "update-movie-form";
 	}
 	
 	@GetMapping("/delete")
@@ -124,13 +111,19 @@ public class MovieController {
 		return "redirect:/movie/list";
 	}
 	
-	@GetMapping("/vote")
-	public String vote(@RequestParam("movieId") int theId) {
-		movieService.vote(theId);
-		Action theAction = new Action(currentPrincipalName, keywordVoted, theId, getTodaysDate());
-		actionService.saveAction(theAction);
-		return "redirect:/movie/list";
+	@GetMapping("/addForm")
+	public String showFormForAdd(Model theModel) {
+		Movie theMovie = new Movie();
+		theModel.addAttribute("movie", theMovie);
+		return "movie/addForm";
 	}
+	
+	@GetMapping("/updateForm")
+	public String showFormForUpdate(@RequestParam("movieId") int theId, Model theModel) {
+		Movie theMovie = movieService.getMovie(theId);	
+		theModel.addAttribute("movie", theMovie);
+		return "movie/updateForm";
+	}	
 	
 	private String getFromDate() {
 		Date currentDate = new Date();

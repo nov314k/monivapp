@@ -15,7 +15,7 @@
 <body>
 <div class="container">
 <h3>Suggest a movie to watch</h3>
-	<form:form action="saveMovie" modelAttribute="movie" method="POST">
+	<form:form action="add" modelAttribute="movie" method="POST">
 		<form:hidden path="id" />
 		<div style="margin-bottom: 15px">
 			<form:input path="title" placeholder="Movie title" class="form-control" />

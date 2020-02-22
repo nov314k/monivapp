@@ -15,6 +15,7 @@
 <body>
 <div class="container">
 <h3>Movie Night Voting App</h3>
+
 <security:authorize access="hasAnyRole('VOTER', 'MAINTAINER', 'ADMIN')">
 	<p>
 	Hello <security:authentication property="principal.username" />!
@@ -24,7 +25,7 @@
 		<c:choose>
 			<c:when test="${numofRemainingAdditions > 0}">
 		   		<input type="button" value="Suggest a movie to watch"
-					onclick="window.location.href='showFormForAdd'; return false;"
+					onclick="window.location.href='addForm'; return false;"
 					class="btn btn-primary btn-sm mb-3" />
 		   	</c:when>
 		   	<c:otherwise>
@@ -34,11 +35,13 @@
 		<input type="submit" value="Sign out" class="btn btn-primary btn-sm mb-3" />
 	</form:form>
 </security:authorize>
+
 <security:authorize access="!hasAnyRole('VOTER', 'MAINTAINER', 'ADMIN')">
 <input type="button" value="Sign in to vote and suggest movies to watch"
 	onclick="window.location.href='showMyLoginPage'; return false;"
 	class="btn btn-primary btn-sm mb-3" />
 </security:authorize>
+
 <table class="table table-bordered table-striped">
  	<thead class="thead-dark">
 	<tr>
@@ -50,7 +53,7 @@
 	</tr>
 	</thead>
 	<c:forEach var="tempMovie" items="${movies}">
-		<c:url var="updateLink" value="/movie/showFormForUpdate">
+		<c:url var="updateLink" value="/movie/updateForm">
 			<c:param name="movieId" value="${tempMovie.id}" />
 		</c:url>					
 		<c:url var="deleteLink" value="/movie/delete">
