@@ -38,7 +38,7 @@ public class RegistrationController {
 	@GetMapping("/showRegistrationForm")
 	public String showMyLoginPage(Model theModel) {	
 		theModel.addAttribute("crmUser", new CrmUser());
-		return "registration-form";
+		return "register";
 	}
 
 	@PostMapping("/processRegistrationForm")
@@ -49,7 +49,7 @@ public class RegistrationController {
 		String userName = theCrmUser.getUserName();
 		logger.info("Processing registration form for: " + userName);
 		if (theBindingResult.hasErrors()){
-			return "registration-form";
+			return "register";
 	    }
 
 		// Check the database if user already exists
@@ -59,7 +59,7 @@ public class RegistrationController {
 			theModel.addAttribute("registrationError", "User name already exists");
 
 			logger.warning("User name already exists");
-        	return "registration-form";
+        	return "register";
         }
         // Create user account        						
         userService.save(theCrmUser);
