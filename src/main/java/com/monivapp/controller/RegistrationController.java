@@ -1,7 +1,5 @@
 package com.monivapp.controller;
 
-import java.util.logging.Logger;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +25,6 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 	
-    private Logger logger = Logger.getLogger(getClass().getName());
-    
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
 		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
@@ -47,7 +43,6 @@ public class RegistrationController {
 				BindingResult theBindingResult, 
 				Model theModel) {
 		String userName = theCrmUser.getUserName();
-		logger.info("Processing registration form for: " + userName);
 		if (theBindingResult.hasErrors()){
 			return "registerForm";
 	    }
@@ -58,14 +53,12 @@ public class RegistrationController {
         	theModel.addAttribute("crmUser", new CrmUser());
 			theModel.addAttribute("registrationError", "User name already exists");
 
-			logger.warning("User name already exists");
         	return "registerForm";
         }
         // Create user account        						
         userService.save(theCrmUser);
         theModel.addAttribute("registrationSuccess",
         		"You have registered successfully<br />Please sign in to Mo-Ni-V-App!");
-        logger.info("Successfully created user: " + userName);
  
         return "loginForm";		
 	}

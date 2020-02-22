@@ -2,7 +2,6 @@ package com.monivapp.config;
 
 import java.beans.PropertyVetoException;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
@@ -35,8 +34,6 @@ public class AppConfig implements WebMvcConfigurer {
 	@Autowired
 	private Environment env;
 	
-	private Logger logger = Logger.getLogger(getClass().getName());
-	
 	@Bean
 	public ViewResolver viewResolver() {	
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -55,8 +52,6 @@ public class AppConfig implements WebMvcConfigurer {
 		catch (PropertyVetoException exc) {
 			throw new RuntimeException(exc);
 		}
-		logger.info("jdbc.url=" + env.getProperty("jdbc.url"));
-		logger.info("jdbc.user=" + env.getProperty("jdbc.user"));
 		
 		// set database connection props
 		securityDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
@@ -85,8 +80,6 @@ public class AppConfig implements WebMvcConfigurer {
 		catch (PropertyVetoException exc) {
 			throw new RuntimeException(exc);
 		}
-		logger.info("jdbc.url=" + env.getProperty("jdbc.url"));
-		logger.info("jdbc.user=" + env.getProperty("jdbc.user"));
 		myDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
 		myDataSource.setUser(env.getProperty("jdbc.user"));
 		myDataSource.setPassword(env.getProperty("jdbc.password"));
