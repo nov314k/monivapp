@@ -18,7 +18,7 @@
 <div class="container">
 <h3>Movie Night Voting App</h3>
 <h6>All fields are required to register a new user</h6>
-<form:form action="${pageContext.request.contextPath}/register/processRegistrationForm" 
+<form:form action="${pageContext.request.contextPath}/register/register" 
 	modelAttribute="crmUser">
 	<c:if test="${registrationError != null}">
 		<div class="alert alert-danger col-md-4">
