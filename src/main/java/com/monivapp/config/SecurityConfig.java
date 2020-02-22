@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.logout().permitAll()
 			.and()
-			.exceptionHandling().accessDeniedPage("/access-denied-notice");	
+			.exceptionHandling().accessDeniedPage("/error");	
 	}
 	
 	@Bean
