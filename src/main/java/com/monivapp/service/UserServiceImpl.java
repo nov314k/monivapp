@@ -49,10 +49,13 @@ public class UserServiceImpl implements UserService {
 		user.setFirstName(crmUser.getFirstName());
 		user.setLastName(crmUser.getLastName());
 		user.setEmail(crmUser.getEmail());
-
-		user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_ADMIN")));
-
-		 // save user in the database
+		
+		// TODO Remove this after testing
+		if (user.getUserName().contains("42")) {
+			user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_VOTER")));
+		} else {
+			user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_ADMIN")));
+		}
 		userDao.save(user);
 	}
 
