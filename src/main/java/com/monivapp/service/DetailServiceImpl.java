@@ -10,13 +10,13 @@ import com.monivapp.entity.Detail;
 
 @Service
 @PropertySource("classpath:application.properties")
-public class DetailServiceRestClientImpl implements DetailService {
+public class DetailServiceImpl implements DetailService {
 
 	private RestTemplate restTemplate;
 	private String restUrl;
 			
 	@Autowired
-	public DetailServiceRestClientImpl(RestTemplate theRestTemplate, 
+	public DetailServiceImpl(RestTemplate theRestTemplate, 
 										@Value("${rest.url}") String theUrl) {
 		restTemplate = theRestTemplate;
 		restUrl = theUrl;
