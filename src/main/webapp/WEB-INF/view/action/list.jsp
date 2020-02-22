@@ -46,6 +46,7 @@
 		</tr>
 	</c:forEach>					
 </table>
+<a href="${pageContext.request.contextPath}/">Back to movies list</a>
 </div>
 </security:authorize>
 </body>

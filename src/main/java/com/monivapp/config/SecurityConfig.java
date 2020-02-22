@@ -12,8 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.monivapp.service.UserService;
 
-// TODO Fix roles not being assigned automatically to new users
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -43,10 +41,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/movie/updateForm").hasAnyRole("MAINTAINER", "ADMIN")
 			.antMatchers("/movie/**").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
 			.antMatchers("/resources/**").permitAll()
+			.antMatchers("/action/list").hasRole("ADMIN")
+			.antMatchers("/action/update").hasRole("ADMIN")
+			.antMatchers("/action/delete").hasRole("ADMIN")
+			.antMatchers("/action/updateForm").hasRole("ADMIN")
 			.and()
 			.formLogin()
-				.loginPage("/login")
-				.loginProcessingUrl("/authenticateTheUser")
+				.loginPage("/loginForm")
+				.loginProcessingUrl("/login")
 				.successHandler(customAuthenticationSuccessHandler)
 				.permitAll()
 			.and()

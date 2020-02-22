@@ -14,7 +14,7 @@
 <body>
 <div class="container">
 <h3>Movie Night Voting App</h3>
-<form:form action="${pageContext.request.contextPath}/authenticateTheUser" method="POST">
+<form:form action="${pageContext.request.contextPath}/login" method="POST">
   	<c:if test="${param.error != null}">
 		<div class="alert alert-danger col-md-4">
 			Invalid username and/or password

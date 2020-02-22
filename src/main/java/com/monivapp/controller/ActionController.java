@@ -28,7 +28,7 @@ public class ActionController {
 	public String listActions(Model theModel) {
 		List<Action> theActions = actionService.getActions();
 		theModel.addAttribute("actions", theActions);	
-		return "actions/list";
+		return "action/list";
 	}
 	
 	@PostMapping("/update")

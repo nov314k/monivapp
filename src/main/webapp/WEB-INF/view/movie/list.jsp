@@ -38,7 +38,7 @@
 
 <security:authorize access="!hasAnyRole('VOTER', 'MAINTAINER', 'ADMIN')">
 <input type="button" value="Sign in to vote and suggest movies to watch"
-	onclick="window.location.href='showMyLoginPage'; return false;"
+	onclick="window.location.href='loginForm'; return false;"
 	class="btn btn-primary btn-sm mb-3" />
 </security:authorize>
 
@@ -94,6 +94,10 @@ you can vote 3 times, and you can suggest 3 new movies to watch.
 You can vote for the same movie multiple times.
 <security:authentication property="principal.authorities" />
 </p>
+</security:authorize>
+
+<security:authorize access="hasAnyRole('ADMIN')">
+<a href="/action/list" class="btn btn-sm">Administer actions</a>
 </security:authorize>
 </div>
 </body>
