@@ -3,7 +3,7 @@
 	<name>monivapp</name>
 	<comment></comment>
 	<projects>
-		<project>_servers</project>
+		<project>Servers</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
