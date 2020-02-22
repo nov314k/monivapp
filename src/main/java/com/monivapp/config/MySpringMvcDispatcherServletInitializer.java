@@ -2,8 +2,8 @@ package com.monivapp.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class SpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
+public class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+        
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		// TODO Auto-generated method stub
@@ -19,5 +19,4 @@ public class SpringMvcDispatcherServletInitializer extends AbstractAnnotationCon
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
-
 }
