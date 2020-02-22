@@ -3,7 +3,7 @@
 <title>monivapp</title>
 </head>
 <body>
-	<h2>Access Denied: You are not authorized to access this resource</h2>
+	<h2>An error has occurred, please contact the site administrator</h2>
 	<hr>
 	<a href="${pageContext.request.contextPath}/">Back to Home Page</a>
 </body>
