@@ -42,6 +42,10 @@
 	class="btn btn-primary btn-sm mb-3" />
 </security:authorize>
 
+<p>
+Movie details (via links below) are fetched fresh from <a href="http://omdbapi.com" target="_blank">omdbapi.com</a>. 
+</p>
+
 <table class="table table-bordered table-striped">
  	<thead class="thead-dark">
 	<tr>
@@ -62,8 +66,11 @@
 		<c:url var="voteLink" value="/movie/vote">
 			<c:param name="movieId" value="${tempMovie.id}" />
 		</c:url>
+		<c:url var="detailLink" value="/movie/detail">
+			<c:param name="movieId" value="${tempMovie.id}" />
+		</c:url>
 		<tr>
-			<td>${tempMovie.title}</td>
+			<td><a href="${detailLink}">${tempMovie.title}</a></td>
 			<td>${tempMovie.votes}</td>
 			<security:authorize access="hasAnyRole('VOTER', 'MAINTAINER', 'ADMIN')">
 				<td>
@@ -97,8 +104,9 @@ You can vote for the same movie multiple times.
 </security:authorize>
 
 <security:authorize access="hasAnyRole('ADMIN')">
-<a href="/action/list" class="btn btn-sm">Administer actions</a>
+<a href="${pageContext.request.contextPath}/action/list" class="btn btn-danger btn-sm">Administration</a>
 </security:authorize>
+
 </div>
 </body>
 </html>
