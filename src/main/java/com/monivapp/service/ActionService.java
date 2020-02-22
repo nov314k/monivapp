@@ -3,7 +3,6 @@ package com.monivapp.service;
 import java.util.List;
 
 import com.monivapp.entity.Action;
-import com.monivapp.entity.Movie;
 
 public interface ActionService {
 	

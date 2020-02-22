@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.monivapp.dao.ActionDao;
 import com.monivapp.entity.Action;
-import com.monivapp.entity.Movie;
 
 @Service
 @PropertySource("classpath:application.properties")
