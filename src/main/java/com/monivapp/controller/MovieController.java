@@ -17,11 +17,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 
 import com.monivapp.entity.Action;
+import com.monivapp.entity.Detail;
 import com.monivapp.entity.Movie;
 import com.monivapp.service.ActionService;
+import com.monivapp.service.DetailService;
 import com.monivapp.service.MovieService;
 
 @Controller
@@ -34,6 +35,9 @@ public class MovieController {
 	
 	@Autowired
 	private ActionService actionService;
+	
+	@Autowired
+	private DetailService detailService;
 	
 	@Autowired
 	private Environment env;
@@ -80,14 +84,7 @@ public class MovieController {
 	public String saveMovie(@ModelAttribute("movie") Movie theMovie) {
 		movieService.saveMovie(theMovie);
 		Action theAction = new Action(currentPrincipalName, keywordAdded, theMovie.getId(), getTodaysDate());
-		actionService.saveAction(theAction);
-		
-		// Experimenti
-		//final String uri = "https://www.omdbapi.com/?apikey=553bde87&s=matrix";
-		//RestTemplate restTemplate = new RestTemplate();
-	    //String result = restTemplate.getForObject(uri, String.class);
-	    //System.out.println(result);
-		
+		actionService.saveAction(theAction);		
 		return "redirect:/movie/list";
 	}
 	
@@ -109,6 +106,15 @@ public class MovieController {
 	public String deleteMovie(@RequestParam("movieId") int theId) {
 		movieService.deleteMovie(theId);
 		return "redirect:/movie/list";
+	}
+	
+	@GetMapping("/detail")
+	public String detailMovie(Model theModel, @RequestParam("movieId") int theId) {
+		Movie theMovie = movieService.getMovie(theId);	
+		theModel.addAttribute("movie", theMovie);
+		Detail theDetail = detailService.getDetail(formatTitle(theMovie.getTitle()));
+		theModel.addAttribute("detail", theDetail);
+		return "movie/detail";
 	}
 	
 	@GetMapping("/addForm")
@@ -136,5 +142,9 @@ public class MovieController {
 	
 	private String getTodaysDate() {
 		return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+	}
+	
+	private String formatTitle(String title) {
+		return title.replace(' ', '+').toLowerCase();
 	}
 }
