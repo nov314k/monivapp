@@ -67,6 +67,6 @@ public class RegistrationController {
         		"You have registered successfully<br />Please sign in to Mo-Ni-V-App!");
         logger.info("Successfully created user: " + userName);
  
-        return "login-form";		
+        return "login";		
 	}
 }
