@@ -73,7 +73,7 @@
 		    	</tr>
 		    	<tr>
 		      		<th scope="row">Poster</th>
-		      		<td><img src=${detail.poster} /></td>
+		      		<td><img src="${detail.poster}" alt="Poster link is not available"></td>
 		    	</tr>
 		    	<tr>
 		      		<th scope="row">Metascore</th>
