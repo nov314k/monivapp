@@ -13,6 +13,8 @@
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<!-- TODO Remove additional security checks as redundant -->
+<security:authorize access="hasAnyRole('ADMIN')">
 <div class="container">
 <h3>Update an action</h3>
 	<form:form action="update" modelAttribute="action" method="POST">
@@ -33,5 +35,6 @@
 		<a href="${pageContext.request.contextPath}/action/list" class="btn btn-warning">Cancel</a>
 	</form:form>
 </div>
+</security:authorize>
 </body>
 </html>

@@ -28,7 +28,13 @@ public class ActionController {
 	public String listActions(Model theModel) {
 		List<Action> theActions = actionService.getActions();
 		theModel.addAttribute("actions", theActions);	
-		return "actions-list";
+		return "actions/list";
+	}
+	
+	@PostMapping("/update")
+	public String updateAction(@ModelAttribute("action") Action theAction) {
+		actionService.saveAction(theAction);
+		return "redirect:/action/list";
 	}
 	
 	@GetMapping("/delete")
@@ -37,16 +43,10 @@ public class ActionController {
 		return "redirect:/action/list";
 	}
 	
-	@GetMapping("/showFormForUpdate")
+	@GetMapping("/updateForm")
 	public String showFormForUpdate(@RequestParam("actionId") int theId, Model theModel) {
 		Action theAction = actionService.getAction(theId);	
 		theModel.addAttribute("action", theAction);
-		return "update-action-form";
-	}
-	
-	@PostMapping("/update")
-	public String updateAction(@ModelAttribute("action") Action theAction) {
-		actionService.saveAction(theAction);
-		return "redirect:/action/list";
+		return "action/updateForm";
 	}
 }

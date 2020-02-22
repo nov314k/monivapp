@@ -13,6 +13,7 @@
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<!-- TODO Remove additional security checks as redundant -->
 <security:authorize access="hasAnyRole('ADMIN')">
 <div class="container">
 <h3>Movie Night Voting App</h3>
@@ -30,7 +31,7 @@
 		<c:url var="deleteLink" value="/action/delete">
 			<c:param name="actionId" value="${tempAction.id}" />
 		</c:url>
-		<c:url var="updateLink" value="/action/showFormForUpdate">
+		<c:url var="updateLink" value="/action/updateForm">
 			<c:param name="actionId" value="${tempAction.id}" />
 		</c:url>
 		<tr>
