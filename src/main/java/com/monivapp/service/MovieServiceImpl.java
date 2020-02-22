@@ -11,7 +11,7 @@ import com.monivapp.dao.MovieDao;
 import com.monivapp.entity.Movie;
 
 @Service
-@PropertySource("classpath:monivapp.properties")
+@PropertySource("classpath:application.properties")
 public class MovieServiceImpl implements MovieService {
 
 	@Autowired
