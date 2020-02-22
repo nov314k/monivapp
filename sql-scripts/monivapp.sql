@@ -38,32 +38,6 @@ CREATE TABLE `role` (
 INSERT INTO `role` (name) VALUES 
 ('ROLE_VOTER'),('ROLE_MAINTAINER'),('ROLE_ADMIN');
 
--- SET FOREIGN_KEY_CHECKS=0;
--- DROP TABLE IF EXISTS `users_roles`;
-
--- SET FOREIGN_KEY_CHECKS=1;
--- CREATE TABLE `users_roles` (
---   `user_id` int NOT NULL,
---   `role_id` int NOT NULL,  
---   PRIMARY KEY (`user_id`,`role_id`),
---   KEY `FK_ROLE_idx` (`role_id`),
---   CONSTRAINT `FK_USER_05` FOREIGN KEY (`user_id`) 
---   REFERENCES `user` (`id`) 
---   ON DELETE NO ACTION ON UPDATE NO ACTION,
---   CONSTRAINT `FK_ROLE` FOREIGN KEY (`role_id`) 
---   REFERENCES `role` (`id`) 
---   ON DELETE NO ACTION ON UPDATE NO ACTION
--- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- SET FOREIGN_KEY_CHECKS=0;
--- INSERT INTO `users_roles` (user_id,role_id) VALUES
--- (1, 1),
--- (2, 2),
--- (3, 3),
--- (4, 1),
--- (5, 2),
--- (6, 3);
-
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `users_roles`;
 
@@ -118,3 +92,55 @@ CREATE TABLE `action` (
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+-- SET FOREIGN_KEY_CHECKS=0;
+-- DROP TABLE IF EXISTS `users_roles`;
+
+-- SET FOREIGN_KEY_CHECKS=1;
+-- CREATE TABLE `users_roles` (
+--   `user_id` int NOT NULL,
+--   `role_id` int NOT NULL,  
+--   PRIMARY KEY (`user_id`,`role_id`),
+--   KEY `FK_ROLE_idx` (`role_id`),
+--   CONSTRAINT `FK_USER_05` FOREIGN KEY (`user_id`) 
+--   REFERENCES `user` (`id`) 
+--   ON DELETE NO ACTION ON UPDATE NO ACTION,
+--   CONSTRAINT `FK_ROLE` FOREIGN KEY (`role_id`) 
+--   REFERENCES `role` (`id`) 
+--   ON DELETE NO ACTION ON UPDATE NO ACTION
+-- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- SET FOREIGN_KEY_CHECKS=0;
+-- INSERT INTO `users_roles` (user_id,role_id) VALUES
+-- (1, 1),
+-- (2, 2),
+-- (3, 3),
+-- (4, 1),
+-- (5, 2),
+-- (6, 3);
+
+-- SET FOREIGN_KEY_CHECKS=0;
+-- DROP TABLE IF EXISTS `users_roles`;
+
+-- SET FOREIGN_KEY_CHECKS=1;
+-- CREATE TABLE `users_roles` (
+--   `user_id` int NOT NULL,
+--   `role_id` int NOT NULL,  
+--   PRIMARY KEY (`user_id`,`role_id`),
+--   KEY `FK_ROLE_idx` (`role_id`),
+--   CONSTRAINT `FK_USER_05` FOREIGN KEY (`user_id`) 
+--   REFERENCES `user` (`id`) 
+--   ON DELETE NO ACTION ON UPDATE NO ACTION,
+--   CONSTRAINT `FK_ROLE` FOREIGN KEY (`role_id`) 
+--   REFERENCES `role` (`id`) 
+--   ON DELETE NO ACTION ON UPDATE NO ACTION
+-- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- SET FOREIGN_KEY_CHECKS=0;
+-- INSERT INTO `users_roles` (user_id,role_id) VALUES
+-- (2, 2),
+-- (12, 12),
+-- (22, 22),
+-- (32, 2),
+-- (42, 12),
+-- (52, 22);
