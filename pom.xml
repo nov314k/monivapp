@@ -4,9 +4,8 @@
 <modelVersion>4.0.0</modelVersion>
 <groupId>com.monivapp</groupId>
 <artifactId>monivapp</artifactId>
-<version>1.0</version>
+<version>0.0.1-SNAPSHOT</version>
 <packaging>war</packaging>
-<name>monivapp</name>
 
 <properties>
 	<springframework.version>5.0.5.RELEASE</springframework.version>
@@ -89,6 +88,7 @@
 	    <artifactId>hibernate-validator</artifactId>
 	    <version>6.0.7.Final</version>
 	</dependency>
+	
 </dependencies>
 <build>
 	<finalName>monivapp</finalName>
@@ -97,7 +97,7 @@
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-war-plugin</artifactId>
-			    <version>3.2.0</version>					
+			    <version>3.2.0</version>						    	
 			</plugin>						
 		</plugins>
 	</pluginManagement>
