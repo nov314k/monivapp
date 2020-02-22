@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AppController {
 
 	@GetMapping("/")
-	public String showHome() {
-		
+	public String showHome() {		
 		return "redirect:/movie/list";
 	}
 }
