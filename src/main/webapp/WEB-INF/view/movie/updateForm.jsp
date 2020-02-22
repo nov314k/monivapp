@@ -20,6 +20,7 @@
 		<div style="margin-bottom: 15px">
 			<form:input path="title" placeholder="Movie title" class="form-control" />
 		</div>
+		<!-- TODO Change so that only an ADMIN can change the number of votes -->
 		<security:authorize access="hasAnyRole('MAINTAINER', 'ADMIN')">
 			<div style="margin-bottom: 15px">
 				<form:input path="votes" class="form-control" />
