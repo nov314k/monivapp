@@ -3,21 +3,23 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="en">
+
 <head>
 <title>monivapp</title>  
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-
 <!-- TODO Remove
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 -->
-
 </head>
+
 <body>
+
 <div class="container">
 <h3>Movie details</h3>
+
 <c:choose>
 	<c:when test="${detail.response}">
 		<table class="table table-striped">
