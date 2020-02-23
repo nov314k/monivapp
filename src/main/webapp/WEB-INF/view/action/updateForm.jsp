@@ -39,9 +39,9 @@
 		<form:input path="date" class="form-control" />
 	</div>
 
-	<button type="submit" class="btn btn-success">Save</button>
+	<button type="submit" class="btn btn-success btn-sm">Save</button>
 	
-	<a href="${pageContext.request.contextPath}/action/list" class="btn btn-warning">Cancel</a>
+	<a href="${pageContext.request.contextPath}/action/list" class="btn btn-warning btn-sm">Cancel</a>
 
 </form:form>
 </div>
