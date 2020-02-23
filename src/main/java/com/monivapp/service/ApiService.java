@@ -1,8 +1,13 @@
 package com.monivapp.service;
 
-import com.monivapp.entity.Detail;
+import java.util.List;
 
-public interface DetailService {
+import com.monivapp.entity.Detail;
+import com.monivapp.entity.SearchResult;
+
+public interface ApiService {
 
 	public Detail getDetail(String title);
+	
+	public List<SearchResult> getSearchResults(String titleTerm);
 }
