@@ -13,19 +13,18 @@ import com.monivapp.entity.Detail;
 public class DetailServiceImpl implements DetailService {
 
 	private RestTemplate restTemplate;
-	private String restUrl;
+	private String apiUrl;
 			
 	@Autowired
-	public DetailServiceImpl(RestTemplate theRestTemplate, 
-										@Value("${rest.url}") String theUrl) {
+	public DetailServiceImpl(RestTemplate theRestTemplate,
+			@Value("${omdb.api.url}") String theUrl) {
 		restTemplate = theRestTemplate;
-		restUrl = theUrl;
+		apiUrl = theUrl;
 	}
 
 	@Override
 	public Detail getDetail(String title) {
-		Detail theDetail = 
-				restTemplate.getForObject(restUrl + title, Detail.class);
+		Detail theDetail = restTemplate.getForObject(apiUrl + title, Detail.class);
 		return theDetail;
 	}
 }
