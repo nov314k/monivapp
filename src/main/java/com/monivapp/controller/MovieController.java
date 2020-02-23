@@ -144,21 +144,22 @@ public class MovieController {
 		Date currentDate = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(currentDate);
-        // TODO Extract this out to the properties file (include DAYS also)
+        // TODO Extract time period out to the properties file (include DAYS also)
         c.add(Calendar.MONTH, -1);
         Date fromDate = c.getTime();
-        // TODO Extract the format out to the properties fils
+        // TODO Extract date format out to the properties file
         return new SimpleDateFormat("yyyy-MM-dd").format(fromDate);
 	}
 	
 	private String getTodaysDate() {
 		
+        // TODO Extract date format out to the properties file
 		return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 	}
 	
 	private String formatTitle(String title) {
 
-		// TODO Extract the symbol to the properties file
+		// TODO Extract the separator symbol to the properties file
 		return title.replace(' ', '+').toLowerCase();
 	}
 }
