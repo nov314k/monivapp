@@ -33,11 +33,11 @@
 	
 	<c:forEach var="tempAction" items="${actions}">
 	
-		<c:url var="deleteLink" value="${pageContext.request.contextPath}/action/delete">
+		<c:url var="deleteLink" value="/action/delete">
 			<c:param name="actionId" value="${tempAction.id}" />
 		</c:url>
 	
-		<c:url var="updateLink" value="${pageContext.request.contextPath}/action/updateForm">
+		<c:url var="updateLink" value="$/action/updateForm">
 			<c:param name="actionId" value="${tempAction.id}" />
 		</c:url>
 	
