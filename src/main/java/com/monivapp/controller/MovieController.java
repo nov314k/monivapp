@@ -50,6 +50,7 @@ public class MovieController {
 	@GetMapping("/list")
 	public String listMovies(Model theModel) {
 		
+		// TODO Use @PostConstruct for these?
 		this.keywordVoted = env.getProperty("keyword.voted");
 		this.keywordAdded = env.getProperty("keyword.added");
 		this.authentication = SecurityContextHolder.getContext().getAuthentication();
