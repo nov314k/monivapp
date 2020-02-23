@@ -68,13 +68,17 @@ public class MovieController {
 				env.getProperty("maxNumofAllowedRecentVotes"));
 		int numofRemainingVotes = maxNumofAllowedRecentVotes - numofRecentVotes;
 		theModel.addAttribute("numofRemainingVotes", numofRemainingVotes);
-		
+				
 		// Calculate remaining movie suggestions		
 		int maxNumofAllowedRecentAdditions = Integer.parseInt(
 				env.getProperty("maxNumofAllowedRecentAdditions"));
 		int numofRemainingAdditions =
 				maxNumofAllowedRecentAdditions - numofRecentAdditions;
 		theModel.addAttribute("numofRemainingAdditions", numofRemainingAdditions);
+		
+		// TODO Do all the logic in the controller
+		// if (numofRemainingVotes > 0) {
+		//   theModel.addAttribute(...); ...
 
 		return "movie/list";
 	}
