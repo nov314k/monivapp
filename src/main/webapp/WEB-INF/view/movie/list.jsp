@@ -36,8 +36,8 @@
 				Search OMDB (experimental)</a>
 		-->
 		
+		<!-- TODO Do all the logic in the controller -->
 		<c:choose>
-			<!-- TODO Do all the logic in the controller -->
 			<c:when test="${numofRemainingAdditions > 0}">
 				<!-- TODO Remove
 		   		<input type="button" value="Suggest a movie to watch"
@@ -124,8 +124,8 @@
 						<a href="${updateLink}" class="btn btn-warning btn-sm">Update</a>
 					</security:authorize>
 			
-					<c:choose>
-						<!-- TODO Do all the logic in the controller -->
+					<!-- TODO Do all the logic in the controller -->
+					<c:choose>	
 						<c:when test="${numofRemainingVotes > 0}">
 		    				<a href="${voteLink}" class="btn btn-success btn-sm">Vote</a>
 		    			</c:when>
