@@ -47,21 +47,44 @@ public class AppConfig implements WebMvcConfigurer {
 	public DataSource dataSource() {
 		
 		ComboPooledDataSource dataSource = new ComboPooledDataSource();
+		
 		try {
 			dataSource.setDriverClass("com.mysql.jdbc.Driver");		
 		}
 		catch (PropertyVetoException exc) {
 			throw new RuntimeException(exc);
 		}
+		
 		dataSource.setJdbcUrl(env.getProperty("jdbc.url"));
 		dataSource.setUser(env.getProperty("jdbc.user"));
 		dataSource.setPassword(env.getProperty("jdbc.password"));
+		
 		dataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
 		
 		dataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
 		dataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));		
 		dataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
+		
 		return dataSource;
+	}
+	
+	@Bean
+	@Autowired
+	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+		
+		HibernateTransactionManager txManager = new HibernateTransactionManager();
+		txManager.setSessionFactory(sessionFactory);
+		return txManager;
+	}
+	
+	@Bean
+	public LocalSessionFactoryBean sessionFactory(){
+		
+		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+		sessionFactory.setDataSource(dataSource());
+		sessionFactory.setPackagesToScan(env.getProperty("hiberante.packagesToScan"));
+		sessionFactory.setHibernateProperties(getHibernateProperties());
+		return sessionFactory;
 	}
 	
 	@Bean
@@ -83,25 +106,6 @@ public class AppConfig implements WebMvcConfigurer {
 		props.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 		props.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 		return props;				
-	}
-	
-	@Bean
-	public LocalSessionFactoryBean sessionFactory(){
-		
-		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan(env.getProperty("hiberante.packagesToScan"));
-		sessionFactory.setHibernateProperties(getHibernateProperties());
-		return sessionFactory;
-	}
-	
-	@Bean
-	@Autowired
-	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-		
-		HibernateTransactionManager txManager = new HibernateTransactionManager();
-		txManager.setSessionFactory(sessionFactory);
-		return txManager;
 	}
 	
 	@Override
