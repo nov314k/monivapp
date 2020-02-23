@@ -38,7 +38,7 @@ public class MovieDaoImpl implements MovieDao {
 	public void saveMovie(Movie theMovie) {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.save(theMovie);
+		currentSession.saveOrUpdate(theMovie);
 	}
 	
 	@Override
