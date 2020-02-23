@@ -21,9 +21,9 @@ INSERT INTO `user` (username,password,first_name,last_name,email) VALUES
 ('voter','$2a$10$7NtqYWm04eEennIPmp0DeOb2ul6hLPtLiwQzQ5Y0v1H5H7/cJ.qiu','One','Two','voter@example.com'),
 ('maintainer','$2a$10$7NtqYWm04eEennIPmp0DeOb2ul6hLPtLiwQzQ5Y0v1H5H7/cJ.qiu','Three','Four','maintainer@example.com'),
 ('admin','$2a$10$7NtqYWm04eEennIPmp0DeOb2ul6hLPtLiwQzQ5Y0v1H5H7/cJ.qiu','Five','Six','admin@example.com'),
-('cfvoter','$2a$10$5ni9ZafQIycxhU9oJXwLMOXYnq5QC5Jc2kspp.aSZQIffr8mQJlzW','Seven','Eight','cfvoter@example.com'),
-('cfmaintainer','$2a$10$5ni9ZafQIycxhU9oJXwLMOXYnq5QC5Jc2kspp.aSZQIffr8mQJlzW','Nine','Ten','cfmaintainer@example.com'),
-('cfadmin','$2a$10$5ni9ZafQIycxhU9oJXwLMOXYnq5QC5Jc2kspp.aSZQIffr8mQJlzW','Eleven','Twelve','cfadmin@example.com');
+('cfvoter','$2y$10$hfRoBrl1N3LVrCfm9ITTveJ.tBGxWznny1dpwDKR0vCkrR2ZIHNsW','Seven','Eight','cfvoter@example.com'),
+('cfmaintainer','$2y$10$owDgALAtMHZfcQ6LsCA0dOcWLZa7j84F1N.ioR2unQHwukPfm/ig2','Nine','Ten','cfmaintainer@example.com'),
+('cfadmin','$2y$10$SBt8w5TsaC/Sn3BjxE51BuIz25eBNM9/f0CbwuWtwbm7ajkVsb0GG','Eleven','Twelve','cfadmin@example.com');
 
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `role`;
@@ -37,32 +37,6 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (name) VALUES 
 ('ROLE_VOTER'),('ROLE_MAINTAINER'),('ROLE_ADMIN');
-
-SET FOREIGN_KEY_CHECKS=0;
-DROP TABLE IF EXISTS `users_roles`;
-
-SET FOREIGN_KEY_CHECKS=1;
-CREATE TABLE `users_roles` (
-  `user_id` int NOT NULL,
-  `role_id` int NOT NULL,  
-  PRIMARY KEY (`user_id`,`role_id`),
-  KEY `FK_ROLE_idx` (`role_id`),
-  CONSTRAINT `FK_USER_05` FOREIGN KEY (`user_id`) 
-  REFERENCES `user` (`id`) 
-  ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_ROLE` FOREIGN KEY (`role_id`) 
-  REFERENCES `role` (`id`) 
-  ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-SET FOREIGN_KEY_CHECKS=0;
-INSERT INTO `users_roles` (user_id,role_id) VALUES
-(2, 2),
-(12, 12),
-(22, 22),
-(32, 2),
-(42, 12),
-(52, 22);
 
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `movie`;
@@ -93,6 +67,7 @@ CREATE TABLE `action` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
+-- USE `monivapp`;
 -- SET FOREIGN_KEY_CHECKS=0;
 -- DROP TABLE IF EXISTS `users_roles`;
 
@@ -119,6 +94,7 @@ CREATE TABLE `action` (
 -- (5, 2),
 -- (6, 3);
 
+-- USE `ad_50bca53daa359fe`;
 -- SET FOREIGN_KEY_CHECKS=0;
 -- DROP TABLE IF EXISTS `users_roles`;
 
