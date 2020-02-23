@@ -22,7 +22,7 @@ import com.monivapp.entity.Action;
 import com.monivapp.entity.Detail;
 import com.monivapp.entity.Movie;
 import com.monivapp.service.ActionService;
-import com.monivapp.service.DetailService;
+import com.monivapp.service.ApiService;
 import com.monivapp.service.MovieService;
 
 @Controller
@@ -37,7 +37,7 @@ public class MovieController {
 	private ActionService actionService;
 	
 	@Autowired
-	private DetailService detailService;
+	private ApiService apiService;
 	
 	@Autowired
 	private Environment env;
@@ -118,13 +118,13 @@ public class MovieController {
 		
 		Movie theMovie = movieService.getMovie(theId);	
 		theModel.addAttribute("movie", theMovie);
-		Detail theDetail = detailService.getDetail(formatTitle(theMovie.getTitle()));
+		Detail theDetail = apiService.getDetail(formatTitle(theMovie.getTitle()));
 		theModel.addAttribute("detail", theDetail);
 		return "movie/detail";
 	}
 	
 	@GetMapping("/addForm")
-	public String showFormForAdd(Model theModel) {
+	public String showAddForm(Model theModel) {
 		
 		Movie theMovie = new Movie();
 		theModel.addAttribute("movie", theMovie);
@@ -132,12 +132,12 @@ public class MovieController {
 	}
 	
 	@GetMapping("/updateForm")
-	public String showFormForUpdate(@RequestParam("movieId") int theId, Model theModel) {
+	public String showUpdateForm(@RequestParam("movieId") int theId, Model theModel) {
 		
 		Movie theMovie = movieService.getMovie(theId);	
 		theModel.addAttribute("movie", theMovie);
 		return "movie/updateForm";
-	}	
+	}
 	
 	private String getFromDate() {
 		
