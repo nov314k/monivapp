@@ -21,9 +21,9 @@ INSERT INTO `user` (username,password,first_name,last_name,email) VALUES
 ('voter','$2a$10$7NtqYWm04eEennIPmp0DeOb2ul6hLPtLiwQzQ5Y0v1H5H7/cJ.qiu','One','Two','voter@example.com'),
 ('maintainer','$2a$10$7NtqYWm04eEennIPmp0DeOb2ul6hLPtLiwQzQ5Y0v1H5H7/cJ.qiu','Three','Four','maintainer@example.com'),
 ('admin','$2a$10$7NtqYWm04eEennIPmp0DeOb2ul6hLPtLiwQzQ5Y0v1H5H7/cJ.qiu','Five','Six','admin@example.com'),
-('cfvoter','$2y$10$hfRoBrl1N3LVrCfm9ITTveJ.tBGxWznny1dpwDKR0vCkrR2ZIHNsW','Seven','Eight','cfvoter@example.com'),
-('cfmaintainer','$2y$10$owDgALAtMHZfcQ6LsCA0dOcWLZa7j84F1N.ioR2unQHwukPfm/ig2','Nine','Ten','cfmaintainer@example.com'),
-('cfadmin','$2y$10$SBt8w5TsaC/Sn3BjxE51BuIz25eBNM9/f0CbwuWtwbm7ajkVsb0GG','Eleven','Twelve','cfadmin@example.com');
+('cfvoter','$2a$10$VoyA3gN.C3e4NbQLS39i7eJ6/4wWkK.K0bm2j5lRw6j/xAUUA3XC.','Seven','Eight','cfvoter@example.com'),
+('cfmaintainer','$2a$10$vUEKx2AD/mqpdAw6lP77u.iVXp6drxMz5CQFmbcGDybzYlS3hw2MK','Nine','Ten','cfmaintainer@example.com'),
+('cfadmin','$2a$10$Lwc2FoE6C7gdffqTb5AkBecPsFL2YUO14fJrxN5UoQBUxQQn/ynV6','Eleven','Twelve','cfadmin@example.com');
 
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `role`;
