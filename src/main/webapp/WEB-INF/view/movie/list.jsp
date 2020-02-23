@@ -30,26 +30,42 @@
 
 	<!-- "Suggest a movie to watch" button, and "Sign out" button -->	
 	<form:form action="${pageContext.request.contextPath}/logout" method="POST" class="form-horizontal">
+		
+		<!-- 
+		<a href="${pageContext.request.contextPath}/search/searchForm" class="btn btn-primary btn-sm">
+				Search OMDB (experimental)</a>
+		-->
+		
 		<c:choose>
 			<c:when test="${numofRemainingAdditions > 0}">
+				<!-- TODO Remove
 		   		<input type="button" value="Suggest a movie to watch"
 					onclick="window.location.href='addForm'; return false;"
 					class="btn btn-primary btn-sm mb-3" />
+				-->
+				<a href="${pageContext.request.contextPath}/movie/addForm" class="btn btn-primary btn-sm">
+					Suggest a movie to watch</a>
 		   	</c:when>
 		   	<c:otherwise>
 		   		&nbsp;
 		   	</c:otherwise>
 		</c:choose>
-		<input type="submit" value="Sign out" class="btn btn-primary btn-sm mb-3" />
+		
+		<input type="submit" value="Sign out" class="btn btn-primary btn-sm" />
+	
 	</form:form>
 	
 </security:authorize>
 
 <!-- "Sign in" button -->
 <security:authorize access="!hasAnyRole('VOTER', 'MAINTAINER', 'ADMIN')">
+	<a href="${pageContext.request.contextPath}/loginForm" class="btn btn-primary btn-sm">
+	Sign in to vote and suggest movies to watch</a>
+	<!-- TODO Remove
 	<input type="button" value="Sign in to vote and suggest movies to watch"
 		onclick="window.location.href='loginForm'; return false;"
 		class="btn btn-primary btn-sm mb-3" />
+	-->
 </security:authorize>
 
 <p>
@@ -134,7 +150,7 @@
 
 <security:authorize access="hasAnyRole('ADMIN')">
 	<a href="${pageContext.request.contextPath}/action/list" class="btn btn-danger btn-sm">
-	Delete actions (for testing)</a>
+	Delete actions (for testing only)</a>
 </security:authorize>
 
 </div>
