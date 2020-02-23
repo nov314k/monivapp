@@ -6,15 +6,15 @@ import com.monivapp.entity.Action;
 
 public interface ActionDao {
 	
-	public int getNumofRecentActions(String userName, String userAction, String fromDate);
-
+	List<Action> getActions();
+	
+	public Action getAction(int theId);
+	
 	public void saveAction(Action theAction);
-
-	List<Action> getActions();	
 	
 	public void deleteAction(int theId);
 	
 	public void updateAction(Action theAction);
 	
-	public Action getAction(int theId);
+	public int getNumofRecentActions(String userName, String userAction, String fromDate);
 }

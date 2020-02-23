@@ -27,39 +27,37 @@ public class RegistrationController {
 	
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
+		
 		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
 		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}	
 	
 	@GetMapping("/registerForm")
-	public String showRegisterForm (Model theModel) {	
+	public String showRegisterForm (Model theModel) {
+		
 		theModel.addAttribute("crmUser", new CrmUser());
 		return "registerForm";
 	}
 
 	@PostMapping("/register")
-	public String register (
-				@Valid @ModelAttribute("crmUser") CrmUser theCrmUser, 
-				BindingResult theBindingResult, 
-				Model theModel) {
+	public String register (@Valid @ModelAttribute("crmUser") CrmUser theCrmUser, 
+				BindingResult theBindingResult, Model theModel) {
+		
 		String userName = theCrmUser.getUserName();
 		if (theBindingResult.hasErrors()){
 			return "registerForm";
 	    }
 
-		// Check the database if user already exists
         User existing = userService.findByUserName(userName);
         if (existing != null) {
         	theModel.addAttribute("crmUser", new CrmUser());
-			theModel.addAttribute("registrationError", "User name already exists");
-
+			theModel.addAttribute("registrationError", "Username already exists");
         	return "registerForm";
         }
-        // Create user account        						
+ 						
         userService.save(theCrmUser);
         theModel.addAttribute("registrationSuccess",
-        		"You have registered successfully<br />Please sign in to Mo-Ni-V-App!");
- 
+        		"You have registered successfully<br />Please sign in to Mo-Ni-V-App!"); 
         return "loginForm";		
 	}
 }

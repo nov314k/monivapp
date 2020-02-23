@@ -7,7 +7,8 @@ import com.monivapp.validation.FieldMatch;
 import com.monivapp.validation.ValidEmail;
 
 @FieldMatch.List({
-    @FieldMatch(first = "password", second = "matchingPassword", message = "Two password fields must match")
+    @FieldMatch(first = "password", second = "matchingPassword",
+    		message = "Two password fields must match")
 })
 public class CrmUser {
 

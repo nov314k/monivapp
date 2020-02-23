@@ -8,11 +8,13 @@ public class LoginController {
 
 	@GetMapping("/loginForm")
 	public String showLoginForm() {
+		
 		return "loginForm";		
 	}
 	
 	@GetMapping("/error")
 	public String showError() {
+		
 		return "error";		
 	}
 }

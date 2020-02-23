@@ -18,12 +18,14 @@ public class DetailServiceImpl implements DetailService {
 	@Autowired
 	public DetailServiceImpl(RestTemplate theRestTemplate,
 			@Value("${omdb.api.url}") String theUrl) {
+		
 		restTemplate = theRestTemplate;
 		apiUrl = theUrl;
 	}
 
 	@Override
 	public Detail getDetail(String title) {
+		
 		Detail theDetail = restTemplate.getForObject(apiUrl + title, Detail.class);
 		return theDetail;
 	}

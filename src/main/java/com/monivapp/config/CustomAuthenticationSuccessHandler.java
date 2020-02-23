@@ -22,13 +22,14 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     private UserService userService;
 	
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
-			throws IOException, ServletException {
-
+	public void onAuthenticationSuccess(HttpServletRequest request,
+			HttpServletResponse response, Authentication authentication)
+					throws IOException, ServletException {
+		
 		String userName = authentication.getName();
 		User theUser = userService.findByUserName(userName);
 		HttpSession session = request.getSession();
 		session.setAttribute("user", theUser);
-		response.sendRedirect(request.getContextPath() + "/movie/list");
+		response.sendRedirect(request.getContextPath());
 	}
 }

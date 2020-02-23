@@ -79,12 +79,16 @@ public class Detail {
 	private String response;
 	
 	public Detail() {
+		
 	}
 	
-	public Detail(String title, String year, String rated, String released, String runtime, String genre,
-			String director, String writer, String actors, String plot, String language, String country, String awards,
-			String poster, String metascore, String imdbRating, String imdbVotes, String imdbId, String type,
-			String dvd, String boxOffice, String production, String website, String response) {
+	public Detail(String title, String year, String rated, String released,
+			String runtime, String genre, String director, String writer, String actors,
+			String plot, String language, String country, String awards, String poster,
+			String metascore, String imdbRating, String imdbVotes, String imdbId,
+			String type, String dvd, String boxOffice, String production, String website,
+			String response) {
+		
 		this.title = title;
 		this.year = year;
 		this.rated = rated;

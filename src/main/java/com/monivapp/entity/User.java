@@ -34,9 +34,12 @@ public class User {
 	private Collection<Role> roles;
 
 	public User() {
+		
 	}
 
-	public User(String userName, String password, String firstName, String lastName, String email) {
+	public User(String userName, String password, String firstName, String lastName,
+			String email) {
+		
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
@@ -44,8 +47,9 @@ public class User {
 		this.email = email;
 	}
 
-	public User(String userName, String password, String firstName, String lastName, String email,
-			Collection<Role> roles) {
+	public User(String userName, String password, String firstName, String lastName,
+			String email, Collection<Role> roles) {
+		
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
@@ -108,12 +112,5 @@ public class User {
 
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
-	}
-
-	@Override
-	public String toString() {
-		return "User{" + "id=" + id + ", userName='" + userName + '\'' + ", password='" + "*********" + '\''
-				+ ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", email='" + email + '\''
-				+ ", roles=" + roles + '}';
 	}
 }

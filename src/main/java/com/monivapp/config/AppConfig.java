@@ -36,15 +36,17 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	@Bean
 	public ViewResolver viewResolver() {	
+		
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setPrefix("/WEB-INF/view/");
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
 	
-	// TODO Consider combining two data sources into one, since they are the same?
+	// TODO Consider combining two data sources into one (they are the same)
 	@Bean
-	public DataSource securityDataSource() {	
+	public DataSource securityDataSource() {
+		
 		ComboPooledDataSource securityDataSource = new ComboPooledDataSource();
 		try {
 			securityDataSource.setDriverClass("com.mysql.jdbc.Driver");		
@@ -53,26 +55,21 @@ public class AppConfig implements WebMvcConfigurer {
 			throw new RuntimeException(exc);
 		}
 		
-		// set database connection props
 		securityDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
 		securityDataSource.setUser(env.getProperty("jdbc.user"));
 		securityDataSource.setPassword(env.getProperty("jdbc.password"));
+		securityDataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
 		
-		// set connection pool props
-		securityDataSource.setInitialPoolSize(
-		getIntProperty("connection.pool.initialPoolSize"));
-
-		securityDataSource.setMinPoolSize(
-				getIntProperty("connection.pool.minPoolSize"));
-		securityDataSource.setMaxPoolSize(
-				getIntProperty("connection.pool.maxPoolSize"));
-		securityDataSource.setMaxIdleTime(
-				getIntProperty("connection.pool.maxIdleTime"));
+		securityDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
+		securityDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));
+		securityDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
 		return securityDataSource;
 	}
 	
+	// TODO Consider combining two data sources into one (they are the same)
 	@Bean
 	public DataSource myDataSource() {
+		
 		ComboPooledDataSource myDataSource = new ComboPooledDataSource();
 		try {
 			myDataSource.setDriverClass("com.mysql.jdbc.Driver");		
@@ -84,6 +81,7 @@ public class AppConfig implements WebMvcConfigurer {
 		myDataSource.setUser(env.getProperty("jdbc.user"));
 		myDataSource.setPassword(env.getProperty("jdbc.password"));
 		myDataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
+		
 		myDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
 		myDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));		
 		myDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
@@ -92,16 +90,19 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	@Bean
 	public RestTemplate restTemplate() {
+		
 		return new RestTemplate();
 	}
 	
 	private int getIntProperty(String propName) {
+		
 		String propVal = env.getProperty(propName);
 		int intPropVal = Integer.parseInt(propVal);
 		return intPropVal;
 	}
 	
 	private Properties getHibernateProperties() {
+		
 		Properties props = new Properties();
 		props.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 		props.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
@@ -110,6 +111,7 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	@Bean
 	public LocalSessionFactoryBean sessionFactory(){
+		
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(securityDataSource());
 		sessionFactory.setPackagesToScan(env.getProperty("hiberante.packagesToScan"));
@@ -120,6 +122,7 @@ public class AppConfig implements WebMvcConfigurer {
 	@Bean
 	@Autowired
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+		
 		HibernateTransactionManager txManager = new HibernateTransactionManager();
 		txManager.setSessionFactory(sessionFactory);
 		return txManager;
@@ -127,8 +130,7 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-          .addResourceHandler("/resources/**")
-          .addResourceLocations("/resources/"); 
+		
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/"); 
     }
 }

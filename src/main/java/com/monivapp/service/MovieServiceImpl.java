@@ -20,37 +20,42 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	@Transactional
 	public List<Movie> getMovies() {
+		
 		return movieDao.getMovies();
 	}
-
-	@Override
-	@Transactional
-	public void saveMovie(Movie theMovie) {
-		movieDao.saveMovie(theMovie);
-	}
 	
-	// TODO Consider combining with saveMovie
-	@Override
-	@Transactional
-	public void updateMovie(Movie theMovie) {
-		movieDao.updateMovie(theMovie);
-	}
-
 	@Override
 	@Transactional
 	public Movie getMovie(int theId) {
+		
 		return movieDao.getMovie(theId);
 	}
 
 	@Override
 	@Transactional
+	public void saveMovie(Movie theMovie) {
+		
+		movieDao.saveMovie(theMovie);
+	}
+	
+	@Override
+	@Transactional
 	public void deleteMovie(int theId) {
+		
 		movieDao.deleteMovie(theId);
 	}
 	
 	@Override
 	@Transactional
+	public void updateMovie(Movie theMovie) {
+		
+		movieDao.updateMovie(theMovie);
+	}
+
+	@Override
+	@Transactional
 	public void vote(int theId) {
+		
 		movieDao.vote(theId);
 	}
 }

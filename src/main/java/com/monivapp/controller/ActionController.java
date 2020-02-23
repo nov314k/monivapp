@@ -25,25 +25,29 @@ public class ActionController {
 		
 	@GetMapping("/list")
 	public String listActions(Model theModel) {
+		
 		List<Action> theActions = actionService.getActions();
 		theModel.addAttribute("actions", theActions);	
 		return "action/list";
 	}
 	
-	@PostMapping("/update")
-	public String updateAction(@ModelAttribute("action") Action theAction) {
-		actionService.saveAction(theAction);
+	@GetMapping("/delete")
+	public String deleteAction(@RequestParam("actionId") int theId) {
+		
+		actionService.deleteAction(theId);
 		return "redirect:/action/list";
 	}
 	
-	@GetMapping("/delete")
-	public String deleteAction(@RequestParam("actionId") int theId) {
-		actionService.deleteAction(theId);
+	@PostMapping("/update")
+	public String updateAction(@ModelAttribute("action") Action theAction) {
+		
+		actionService.saveAction(theAction);
 		return "redirect:/action/list";
 	}
 	
 	@GetMapping("/updateForm")
 	public String showFormForUpdate(@RequestParam("actionId") int theId, Model theModel) {
+		
 		Action theAction = actionService.getAction(theId);	
 		theModel.addAttribute("action", theAction);
 		return "action/updateForm";

@@ -18,42 +18,49 @@ public class MovieDaoImpl implements MovieDao {
 			
 	@Override
 	public List<Movie> getMovies() {
+		
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query<Movie> theQuery = currentSession.createQuery("from Movie order by votes desc", Movie.class);
+		Query<Movie> theQuery = currentSession.createQuery(
+				"from Movie order by votes desc", Movie.class);
 		List<Movie> movies = theQuery.getResultList();		
 		return movies;
 	}
-
-	@Override
-	public void saveMovie(Movie theMovie) {
-		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.saveOrUpdate(theMovie);
-	}
 	
-	// TODO Consider combining with saveMovie
-	@Override
-	public void updateMovie(Movie theMovie) {
-		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.update(theMovie);
-	}
-
 	@Override
 	public Movie getMovie(int theId) {
+		
 		Session currentSession = sessionFactory.getCurrentSession();
 		Movie theMovie = currentSession.get(Movie.class, theId);
 		return theMovie;
 	}
 
 	@Override
-	public void deleteMovie(int theId) {
+	public void saveMovie(Movie theMovie) {
+		
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query theQuery = currentSession.createQuery("delete from Movie where id=:movieId");
+		currentSession.save(theMovie);
+	}
+	
+	@Override
+	public void updateMovie(Movie theMovie) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.update(theMovie);
+	}
+
+	@Override
+	public void deleteMovie(int theId) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query theQuery = currentSession.createQuery(
+				"delete from Movie where id=:movieId");
 		theQuery.setParameter("movieId", theId);
 		theQuery.executeUpdate();		
 	}
 	
 	@Override
 	public void vote(int theId) {
+		
 		Movie theMovie = this.getMovie(theId);
 		theMovie.setVotes(theMovie.getVotes() + 1);
 		this.saveMovie(theMovie);

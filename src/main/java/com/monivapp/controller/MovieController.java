@@ -50,8 +50,6 @@ public class MovieController {
 	@GetMapping("/list")
 	public String listMovies(Model theModel) {
 		
-		// TODO Consider this doing in a constructor?
-		// TODO Will they always have a value?
 		this.keywordVoted = env.getProperty("keyword.voted");
 		this.keywordAdded = env.getProperty("keyword.added");
 		this.authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -65,16 +63,17 @@ public class MovieController {
 		int numofRecentAdditions = actionService.getNumofRecentActions(
 				currentPrincipalName, keywordAdded, getFromDate());
 		
-		// Calculate the number of remaining votes
+		// Calculate remaining votes
 		int maxNumofAllowedRecentVotes = Integer.parseInt(
 				env.getProperty("maxNumofAllowedRecentVotes"));
 		int numofRemainingVotes = maxNumofAllowedRecentVotes - numofRecentVotes;
 		theModel.addAttribute("numofRemainingVotes", numofRemainingVotes);
 		
-		// Calculate the number of remaining movie additions/suggestions		
+		// Calculate remaining movie suggestions		
 		int maxNumofAllowedRecentAdditions = Integer.parseInt(
 				env.getProperty("maxNumofAllowedRecentAdditions"));
-		int numofRemainingAdditions = maxNumofAllowedRecentAdditions - numofRecentAdditions;
+		int numofRemainingAdditions =
+				maxNumofAllowedRecentAdditions - numofRecentAdditions;
 		theModel.addAttribute("numofRemainingAdditions", numofRemainingAdditions);
 
 		return "movie/list";
@@ -82,34 +81,41 @@ public class MovieController {
 	
 	@PostMapping("/add")
 	public String saveMovie(@ModelAttribute("movie") Movie theMovie) {
+		
 		movieService.saveMovie(theMovie);
-		Action theAction = new Action(currentPrincipalName, keywordAdded, theMovie.getId(), getTodaysDate());
+		Action theAction = new Action(currentPrincipalName, keywordAdded,
+				theMovie.getId(), getTodaysDate());
 		actionService.saveAction(theAction);		
 		return "redirect:/movie/list";
 	}
 	
 	@GetMapping("/vote")
 	public String vote(@RequestParam("movieId") int theId) {
+		
 		movieService.vote(theId);
-		Action theAction = new Action(currentPrincipalName, keywordVoted, theId, getTodaysDate());
+		Action theAction = new Action(currentPrincipalName, keywordVoted, theId,
+				getTodaysDate());
 		actionService.saveAction(theAction);
 		return "redirect:/movie/list";
 	}	
 	
-	@PostMapping("/update")
-	public String updateMovie(@ModelAttribute("movie") Movie theMovie) {
-		movieService.saveMovie(theMovie);
+	@GetMapping("/delete")
+	public String deleteMovie(@RequestParam("movieId") int theId) {
+		
+		movieService.deleteMovie(theId);
 		return "redirect:/movie/list";
 	}
 	
-	@GetMapping("/delete")
-	public String deleteMovie(@RequestParam("movieId") int theId) {
-		movieService.deleteMovie(theId);
+	@PostMapping("/update")
+	public String updateMovie(@ModelAttribute("movie") Movie theMovie) {
+		
+		movieService.saveMovie(theMovie);
 		return "redirect:/movie/list";
 	}
 	
 	@GetMapping("/detail")
 	public String detailMovie(Model theModel, @RequestParam("movieId") int theId) {
+		
 		Movie theMovie = movieService.getMovie(theId);	
 		theModel.addAttribute("movie", theMovie);
 		Detail theDetail = detailService.getDetail(formatTitle(theMovie.getTitle()));
@@ -119,6 +125,7 @@ public class MovieController {
 	
 	@GetMapping("/addForm")
 	public String showFormForAdd(Model theModel) {
+		
 		Movie theMovie = new Movie();
 		theModel.addAttribute("movie", theMovie);
 		return "movie/addForm";
@@ -126,25 +133,32 @@ public class MovieController {
 	
 	@GetMapping("/updateForm")
 	public String showFormForUpdate(@RequestParam("movieId") int theId, Model theModel) {
+		
 		Movie theMovie = movieService.getMovie(theId);	
 		theModel.addAttribute("movie", theMovie);
 		return "movie/updateForm";
 	}	
 	
 	private String getFromDate() {
+		
 		Date currentDate = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(currentDate);
+        // TODO Extract this out to the properties file (include DAYS also)
         c.add(Calendar.MONTH, -1);
         Date fromDate = c.getTime();
+        // TODO Extract the format out to the properties fils
         return new SimpleDateFormat("yyyy-MM-dd").format(fromDate);
 	}
 	
 	private String getTodaysDate() {
+		
 		return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 	}
 	
 	private String formatTitle(String title) {
+
+		// TODO Extract the symbol to the properties file
 		return title.replace(' ', '+').toLowerCase();
 	}
 }

@@ -19,37 +19,44 @@ public class ActionServiceImpl implements ActionService {
 	
 	@Override
 	@Transactional
-	public int getNumofRecentActions(String userName, String userAction, String fromDate) {
-		return actionDao.getNumofRecentActions(userName, userAction, fromDate);
-	}
-
-	@Override
-	@Transactional
-	public void saveAction(Action theAction) {
-		actionDao.saveAction(theAction);
-	}
-	
-	@Override
-	@Transactional
-	public void updateAction(Action theAction) {
-		actionDao.updateAction(theAction);
-	}
-
-	@Override
-	@Transactional
 	public List<Action> getActions() {
+		
 		return actionDao.getActions();
 	}
 	
 	@Override
 	@Transactional
+	public Action getAction(int theId) {
+		
+		return actionDao.getAction(theId);
+	}
+	
+	@Override
+	@Transactional
+	public void saveAction(Action theAction) {
+		
+		actionDao.saveAction(theAction);
+	}
+	
+	@Override
+	@Transactional
 	public void deleteAction(int theId) {
+		
 		actionDao.deleteAction(theId);
 	}
 	
 	@Override
 	@Transactional
-	public Action getAction(int theId) {
-		return actionDao.getAction(theId);
+	public void updateAction(Action theAction) {
+		
+		actionDao.updateAction(theAction);
+	}
+	
+	@Override
+	@Transactional
+	public int getNumofRecentActions(String userName, String userAction,
+			String fromDate) {
+		
+		return actionDao.getNumofRecentActions(userName, userAction, fromDate);
 	}
 }

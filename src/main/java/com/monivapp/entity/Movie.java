@@ -55,8 +55,3 @@ public class Movie {
 		this.votes = votes;
 	}
 }
-
-
-
-
-

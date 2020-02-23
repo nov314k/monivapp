@@ -16,6 +16,7 @@ import com.monivapp.validation.FieldMatchValidator;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface FieldMatch {
+	
 	String message() default "";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
@@ -26,8 +27,7 @@ public @interface FieldMatch {
     @Target({ ElementType.TYPE, ElementType.ANNOTATION_TYPE })
     @Retention(RetentionPolicy.RUNTIME)
     @Documented
-    @interface List
-    {
+    @interface List {
     	FieldMatch[] value();
     }
 }

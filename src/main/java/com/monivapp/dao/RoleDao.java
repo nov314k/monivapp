@@ -4,6 +4,5 @@ import com.monivapp.entity.Role;
 
 public interface RoleDao {
 
-	public Role findRoleByName(String theRoleName);
-	
+	public Role findRoleByName(String theRoleName);	
 }
