@@ -42,50 +42,26 @@ public class AppConfig implements WebMvcConfigurer {
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
-	
-	// TODO Consider combining two data sources into one (they are the same)
-	@Bean
-	public DataSource securityDataSource() {
 		
-		ComboPooledDataSource securityDataSource = new ComboPooledDataSource();
+	@Bean
+	public DataSource dataSource() {
+		
+		ComboPooledDataSource dataSource = new ComboPooledDataSource();
 		try {
-			securityDataSource.setDriverClass("com.mysql.jdbc.Driver");		
+			dataSource.setDriverClass("com.mysql.jdbc.Driver");		
 		}
 		catch (PropertyVetoException exc) {
 			throw new RuntimeException(exc);
 		}
+		dataSource.setJdbcUrl(env.getProperty("jdbc.url"));
+		dataSource.setUser(env.getProperty("jdbc.user"));
+		dataSource.setPassword(env.getProperty("jdbc.password"));
+		dataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
 		
-		securityDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
-		securityDataSource.setUser(env.getProperty("jdbc.user"));
-		securityDataSource.setPassword(env.getProperty("jdbc.password"));
-		securityDataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
-		
-		securityDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
-		securityDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));
-		securityDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
-		return securityDataSource;
-	}
-	
-	// TODO Consider combining two data sources into one (they are the same)
-	@Bean
-	public DataSource myDataSource() {
-		
-		ComboPooledDataSource myDataSource = new ComboPooledDataSource();
-		try {
-			myDataSource.setDriverClass("com.mysql.jdbc.Driver");		
-		}
-		catch (PropertyVetoException exc) {
-			throw new RuntimeException(exc);
-		}
-		myDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
-		myDataSource.setUser(env.getProperty("jdbc.user"));
-		myDataSource.setPassword(env.getProperty("jdbc.password"));
-		myDataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
-		
-		myDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
-		myDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));		
-		myDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
-		return myDataSource;
+		dataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
+		dataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));		
+		dataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
+		return dataSource;
 	}
 	
 	@Bean
@@ -113,7 +89,7 @@ public class AppConfig implements WebMvcConfigurer {
 	public LocalSessionFactoryBean sessionFactory(){
 		
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		sessionFactory.setDataSource(securityDataSource());
+		sessionFactory.setDataSource(dataSource());
 		sessionFactory.setPackagesToScan(env.getProperty("hiberante.packagesToScan"));
 		sessionFactory.setHibernateProperties(getHibernateProperties());
 		return sessionFactory;
