@@ -3,11 +3,13 @@ package com.monivapp.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.monivapp.service.UserService;
@@ -30,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
+		
 		http.authorizeRequests()
 			.antMatchers("/").permitAll()
 			.antMatchers("/movie/list").permitAll()
@@ -49,16 +51,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/action/updateForm").hasRole("ADMIN")
 			.antMatchers("/search/search").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
 			.antMatchers("/search/searchForm").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
+			
+//			.antMatchers(HttpMethod.GET, "/api/movies").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
+//			.antMatchers(HttpMethod.GET, "/api/movies/**").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
+//			.antMatchers(HttpMethod.POST, "/api/movies").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
+//			.antMatchers(HttpMethod.POST, "/api/movies/**").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
+//			.antMatchers(HttpMethod.PUT, "/api/movies").hasAnyRole("MAINTAINER", "ADMIN")
+//			.antMatchers(HttpMethod.PUT, "/api/movies/**").hasAnyRole("MAINTAINER", "ADMIN")
+//			.antMatchers(HttpMethod.DELETE, "/api/movies/**").hasAnyRole("MAINTAINER", "ADMIN")
+
 			.and()
+			.httpBasic()
+			
+			.and()
+			.csrf().disable()
+			
+			// NOTE Required by the MVC app
+			//.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			//.and()
+			
 			.formLogin()
 				.loginPage("/loginForm")
 				.loginProcessingUrl("/login")
 				.successHandler(customAuthenticationSuccessHandler)
 				.permitAll()
+			
 			.and()
 			.logout().permitAll()
+			
 			.and()
-			.exceptionHandling().accessDeniedPage("/error");	
+			.exceptionHandling().accessDeniedPage("/error");
 	}
 	
 	@Bean
