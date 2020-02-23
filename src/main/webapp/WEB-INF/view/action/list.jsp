@@ -37,7 +37,7 @@
 			<c:param name="actionId" value="${tempAction.id}" />
 		</c:url>
 	
-		<c:url var="updateLink" value="$/action/updateForm">
+		<c:url var="updateLink" value="/action/updateForm">
 			<c:param name="actionId" value="${tempAction.id}" />
 		</c:url>
 	
