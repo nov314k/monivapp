@@ -20,6 +20,8 @@
 <div class="container">
 <h3>Movie details</h3>
 
+<c:url var="imdbLink" value="https://www.imdb.com/title/"></c:url>
+
 <c:choose>
 	<c:when test="${detail.response}">
 		<table class="table table-striped">
@@ -94,7 +96,10 @@
 		    	</tr>
 		    	<tr>
 		      		<th scope="row">imdbID</th>
-		      		<td>${detail.imdbId}</td>
+		      		<td>
+		      			${detail.imdbId}&nbsp;
+		      			<a href="${imdbLink}${detail.imdbId}" target="_blank">View IMDb movie page (external)</a>
+		      		</td>
 		    	</tr>
 		    	<tr>
 		      		<th scope="row">Type</th>
