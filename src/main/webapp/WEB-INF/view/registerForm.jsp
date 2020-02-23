@@ -60,9 +60,9 @@
 		<form:input path="email" placeholder="Email" class="form-control col-md-4" />
 	</div>
 
-	<button type="submit" class="btn btn-success">Register</button>
+	<button type="submit" class="btn btn-success btn-sm">Register</button>
 
-	<a href="${pageContext.request.contextPath}/movie/list" class="btn btn-warning">View movies</a>
+	<a href="${pageContext.request.contextPath}/movie/list" class="btn btn-warning btn-sm">View movies</a>
 
 </form:form>
 </div>
