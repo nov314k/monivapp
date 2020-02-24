@@ -28,4 +28,27 @@ public class MovieRestExceptionHandler {
 		error.setTimeStamp(System.currentTimeMillis());
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler
+	public ResponseEntity<MovieErrorResponse> handleException(
+			MovieAddingQuotaException exc) {
+		
+		MovieErrorResponse error = new MovieErrorResponse();
+		error.setStatus(HttpStatus.PRECONDITION_FAILED.value());
+		error.setMessage(exc.getMessage());
+		error.setTimeStamp(System.currentTimeMillis());
+		return new ResponseEntity<>(error, HttpStatus.PRECONDITION_FAILED);
+	}
+	
+	// TODO Consider combining with handleException(MovieAddingQuotaException exc) 
+	@ExceptionHandler
+	public ResponseEntity<MovieErrorResponse> handleException(
+			MovieVotingQuotaException exc) {
+		
+		MovieErrorResponse error = new MovieErrorResponse();
+		error.setStatus(HttpStatus.PRECONDITION_FAILED.value());
+		error.setMessage(exc.getMessage());
+		error.setTimeStamp(System.currentTimeMillis());
+		return new ResponseEntity<>(error, HttpStatus.PRECONDITION_FAILED);
+	}
 }
