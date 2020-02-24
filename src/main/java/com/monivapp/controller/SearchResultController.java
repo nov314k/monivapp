@@ -17,15 +17,15 @@ public class SearchResultController {
 	@Autowired
 	private ApiService apiService;
 	
-	@GetMapping("/search")
+	@GetMapping
 	public String search(Model theModel) {
 		
-		return "redirect:movie/list";
+		return "redirect:/movie/list";
 	}
 	
 	@GetMapping("/searchForm")
 	public String showSearchForm(Model theModel) {
 		
-		return "redirect:movie/list";
+		return "redirect:/movie/list";
 	}
 }
