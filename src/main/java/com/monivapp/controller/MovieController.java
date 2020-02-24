@@ -87,6 +87,9 @@ public class MovieController {
 	@PostMapping("/add")
 	public String saveMovie(@ModelAttribute("movie") Movie theMovie) {
 		
+		// TODO Add quote checks (cf REST controller)
+		// TODO Check for duplicate movies (titles)
+		
 		movieService.saveMovie(theMovie);
 		Action theAction = new Action(currentPrincipalName, keywordAdded,
 				theMovie.getId(), getTodaysDate());
@@ -96,6 +99,8 @@ public class MovieController {
 	
 	@GetMapping("/vote")
 	public String vote(@RequestParam("movieId") int theId) {
+		
+		// TODO Add quote checks (cf REST controller)
 		
 		movieService.vote(theId);
 		Action theAction = new Action(currentPrincipalName, keywordVoted, theId,
@@ -144,6 +149,7 @@ public class MovieController {
 		return "movie/updateForm";
 	}
 	
+	// TODO Move to utility class
 	private String getFromDate() {
 		
 		Date currentDate = new Date();
@@ -156,12 +162,14 @@ public class MovieController {
         return new SimpleDateFormat("yyyy-MM-dd").format(fromDate);
 	}
 	
+	// TODO Move to utility class
 	private String getTodaysDate() {
 		
         // TODO Extract date format out to the properties file
 		return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 	}
 	
+	// TODO Move to utility class
 	private String formatTitle(String title) {
 
 		// TODO Extract the separator symbol to the properties file
