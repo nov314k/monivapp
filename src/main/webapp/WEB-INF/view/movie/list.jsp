@@ -144,7 +144,7 @@
 	<p>
 		In the period of one calendar month from today's date,
 		you can vote 3 times, and you can suggest 3 new movies to watch.
-		You can vote for the same movie multiple times.
+		You can vote for the same movie multiple times. Your current role is:
 
 		<security:authentication property="principal.authorities" />
 	</p>
