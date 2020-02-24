@@ -26,10 +26,13 @@ import com.monivapp.entity.Movie;
 import com.monivapp.service.ActionService;
 import com.monivapp.service.MovieService;
 
+
 @RestController
 @RequestMapping("/api")
 @PropertySource("classpath:application.properties")
 public class MovieRestController {
+
+	// TODO Consider adding CORS baeldung.com/spring-cors
 	
 	@Autowired
 	private MovieService movieService;
@@ -91,6 +94,7 @@ public class MovieRestController {
 	public Movie addMovie (@RequestBody Movie theMovie) {
 		
 		// NOTE No title checks are done here (some come from search, some assumed OK)
+		// TODO Add checks for duplicate titles (movies)
 		if (isAddingQuotaExceeded()) {
 			throw new MovieAddingQuotaException(
 					"You cannot add any more movies (quota exceeded)");
