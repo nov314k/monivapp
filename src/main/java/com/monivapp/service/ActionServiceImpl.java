@@ -59,4 +59,11 @@ public class ActionServiceImpl implements ActionService {
 		
 		return actionDao.getNumofRecentActions(userName, userAction, fromDate);
 	}
+	
+	@Override
+	@Transactional
+	public void resetActions() {
+		
+		actionDao.resetActions();
+	}
 }
