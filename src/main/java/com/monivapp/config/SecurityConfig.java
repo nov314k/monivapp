@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.monivapp.service.UserService;
@@ -52,13 +51,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/search/search").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
 			.antMatchers("/search/searchForm").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
 			
+			// TODO Turn back on after initial Angular testing
 //			.antMatchers(HttpMethod.GET, "/api/movies").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
 //			.antMatchers(HttpMethod.GET, "/api/movies/**").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
 //			.antMatchers(HttpMethod.POST, "/api/movies").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
 //			.antMatchers(HttpMethod.POST, "/api/movies/**").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
-//			.antMatchers(HttpMethod.PUT, "/api/movies").hasAnyRole("MAINTAINER", "ADMIN")
-//			.antMatchers(HttpMethod.PUT, "/api/movies/**").hasAnyRole("MAINTAINER", "ADMIN")
-//			.antMatchers(HttpMethod.DELETE, "/api/movies/**").hasAnyRole("MAINTAINER", "ADMIN")
+//			.antMatchers(HttpMethod.GET, "/api/movies/vote").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
+//			.antMatchers(HttpMethod.GET, "/api/movies/vote/**").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
+			
+			// TODO Remove after initial Angular testing
+			.antMatchers(HttpMethod.GET, "/api/movies").permitAll()
+			.antMatchers(HttpMethod.GET, "/api/movies/**").permitAll()
+			.antMatchers(HttpMethod.POST, "/api/movies").permitAll()
+			.antMatchers(HttpMethod.POST, "/api/movies/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/api/movies/vote").permitAll()
+			.antMatchers(HttpMethod.GET, "/api/movies/vote/**").permitAll()
+
+			.antMatchers(HttpMethod.PUT, "/api/movies").hasAnyRole("MAINTAINER", "ADMIN")
+			.antMatchers(HttpMethod.PUT, "/api/movies/**").hasAnyRole("MAINTAINER", "ADMIN")
+			.antMatchers(HttpMethod.DELETE, "/api/movies/**").hasAnyRole("MAINTAINER", "ADMIN")
+			.antMatchers(HttpMethod.GET, "/api/movies/reset").hasAnyRole("MAINTAINER", "ADMIN")
+			.antMatchers(HttpMethod.GET, "/api/movies/reset/**").hasAnyRole("MAINTAINER", "ADMIN")
 
 			.and()
 			.httpBasic()
