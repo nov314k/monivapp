@@ -74,4 +74,11 @@ public class ActionDaoImpl implements ActionDao {
 		Action theAction = currentSession.get(Action.class, theId);
 		return theAction;
 	}
+	
+	@Override
+	public void resetActions() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query theQuery = currentSession.createQuery("delete from Action");
+		theQuery.executeUpdate();
+	}
 }
