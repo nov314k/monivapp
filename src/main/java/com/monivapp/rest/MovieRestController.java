@@ -12,6 +12,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,13 +27,12 @@ import com.monivapp.entity.Movie;
 import com.monivapp.service.ActionService;
 import com.monivapp.service.MovieService;
 
-
 @RestController
+//TODO Adjust CrossOrigin policy after testing
+@CrossOrigin
 @RequestMapping("/api")
 @PropertySource("classpath:application.properties")
 public class MovieRestController {
-
-	// TODO Consider adding CORS baeldung.com/spring-cors
 	
 	@Autowired
 	private MovieService movieService;
