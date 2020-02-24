@@ -16,5 +16,7 @@ public interface ActionService {
 	
 	public void updateAction(Action theAction);
 	
-	public int getNumofRecentActions(String userName, String userAction, String fromDate);	
+	public int getNumofRecentActions(String userName, String userAction, String fromDate);
+	
+	public void resetActions();
 }
