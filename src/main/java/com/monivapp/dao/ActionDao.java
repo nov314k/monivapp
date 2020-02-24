@@ -17,4 +17,6 @@ public interface ActionDao {
 	public void updateAction(Action theAction);
 	
 	public int getNumofRecentActions(String userName, String userAction, String fromDate);
+	
+	public void resetActions();
 }
