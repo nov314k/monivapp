@@ -4,48 +4,59 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.monivapp.service.ActionService;
+import com.monivapp.settings.Settings;
 
 public class Helpers {
-	
-	// TODO Extract Calendar.MONTH, yyyy-MM-dd, + to props; add Calendar.DAY
-	
-	public static String getFromDate() {
+
+	public static String getRecentFromDate() {
 		
 		Date currentDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.MONTH, -1);
-        Date fromDate = c.getTime();
-        return new SimpleDateFormat("yyyy-MM-dd").format(fromDate);
+        Calendar theCalendar = Calendar.getInstance();
+        theCalendar.setTime(currentDate);
+        theCalendar.add(Calendar.MONTH, Settings.RECENT_MONTHS);
+        return new SimpleDateFormat(Settings.DATE_FORMAT).format(theCalendar.getTime());
 	}
 	
 	public static String getTodaysDate() {
 		
-		return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-	}
-	
-	public static String formatTitle(String title) {
-		
-		return title.replace(' ', '+').toLowerCase();
+		return new SimpleDateFormat(Settings.DATE_FORMAT).format(new Date());
 	}
 	
 	public static String getCurrentPrincipalName() {
 	
-		String currentPrincipalName;
-		Authentication authentication;
-		
+		Authentication authentication;	
 		authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication == null) {
-			currentPrincipalName = "ANON";
-			// TODO Consider currentPrincipalName = env.getProperty("user.anonymous");
+			return Settings.USERNAME_ANONYMOUS;
 		} else {
-			currentPrincipalName = authentication.getName();
+			return authentication.getName();
 		}
-		return currentPrincipalName;
+	}
+	
+	public static boolean isQuotaExceeded(ActionService actionService, String actionType,
+			int maxNumofAllowedRecentActions) {
+		
+		int numofRecentActions = actionService.getNumofRecentActions(
+				Helpers.getCurrentPrincipalName(), actionType, Helpers.getRecentFromDate());
+		int numofRemainingActions =
+				maxNumofAllowedRecentActions - numofRecentActions;
+		if (numofRemainingActions <= 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean isAddingQuotaExceeded(ActionService actionService) {
+		return isQuotaExceeded(actionService, Settings.ACTION_ADDED,
+				Settings.MAX_SUGGESTIONS);
+	}
+	
+	public static boolean isVotingQuotaExceeded(ActionService actionService) {
+		return isQuotaExceeded(actionService, Settings.ACTION_VOTED,
+				Settings.MAX_VOTES);
 	}
 }
