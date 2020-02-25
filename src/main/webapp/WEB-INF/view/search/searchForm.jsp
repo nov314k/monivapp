@@ -14,7 +14,7 @@
 <div class="container">
 <h3>Search Open Movies Database <a href="http://omdbapi.com" target="_blank">omdbapi.com</a></h3>
 
-<form:form action="search" modelAttribute="searchResult" method="post">
+<form:form action="searchOmdb" modelAttribute="searchResult" method="post">
 
 	<form:hidden path="search" />
 	
