@@ -1,7 +1,5 @@
 package com.monivapp.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -13,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.monivapp.entity.Detail;
 import com.monivapp.entity.SearchResult;
-import com.monivapp.entity.SearchResultMovie;
 
 @Service
 @PropertySource("classpath:application.properties")
