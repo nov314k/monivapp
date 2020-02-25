@@ -33,16 +33,14 @@
 </form:form>    
     
 <c:choose>
-    <c:when test="${response}">
+    <c:when test="${response}">    	
+    	<p>&nbsp;</p>
+    	<p>Top ten search results:</p>
 		<table class="table table-bordered table-striped">
- 			<p></p>
- 			<p>Top ten search results:</p>	
 			<c:forEach var="tempMovie" items="${search}">
-				
 				<c:url var="previewLink" value="/movie/preview">
 					<c:param name="imdbId" value="${tempMovie.imdbId}" />
 				</c:url>
-			
 				<tr>
 					<td>
 						<img src="${tempMovie.poster}" alt="Poster link is not available" class="font-weight-italic">
@@ -52,7 +50,6 @@
 							<!-- <a href="${previewLink}">${tempMovie.title}</a>  -->
 							${tempMovie.title}
 						</div>
-						
 						<div class="font-weight-light">${tempMovie.year}</div>
 					</td>
 				</tr>
