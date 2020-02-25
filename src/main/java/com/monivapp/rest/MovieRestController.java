@@ -90,13 +90,13 @@ public class MovieRestController {
 		// NOTE No title checks are done here (some come from search, some assumed OK)
 		// TODO Add checks for duplicate titles (movies)
 		if (isAddingQuotaExceeded()) {
-			throw new MovieAddingQuotaException(
+			throw new MovieAddException(
 					"You cannot add any more movies (quota exceeded)");
 		} else {
 			List<Movie> existingMovies = movieService.getMovies();
 			for (Movie eM : existingMovies ) {
 				if (eM.getTitle().equals(theMovie.getTitle())) {
-					throw new MovieAddingQuotaException(
+					throw new MovieAddException(
 						"Movie with the same title has already been suggested");
 				}
 			}
