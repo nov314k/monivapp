@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.monivapp.entity.Detail;
 import com.monivapp.entity.SearchResult;
+import com.monivapp.entity.SearchResultMovie;
 
 @Service
 @PropertySource("classpath:application.properties")
@@ -32,20 +33,31 @@ public class ApiServiceImpl implements ApiService {
 	@Override
 	public Detail getDetail(String title) {
 		
-		// TODO Extract "&t=" into the properties file
-		Detail theDetail = restTemplate.getForObject(apiUrl + "&t=" + title,
-				Detail.class);
+		// TODO Extract "&t=" and &type=movie into the properties file
+		Detail theDetail = restTemplate.getForObject(
+				apiUrl + "&t=" + title + "&type=movie", Detail.class);
 		return theDetail;
 	}
 	
 	@Override
-	public List<SearchResult> getSearchResults(String searchTerm) {
+	public Detail getPreview(String imdbId) {
+		
+		// TODO Extract "&t=" and &type=movie into the properties file
+		Detail theDetail = restTemplate.getForObject(
+				apiUrl + "&i=" + imdbId + "&type=movie", Detail.class);
+		return theDetail;
+	}
+	
+	@Override
+	public SearchResult getSearchResult(String searchTerm) {
 
-		// TODO Extract "&s=" into the properties file
-		ResponseEntity<List<SearchResult>> responseEntity =
-				restTemplate.exchange(apiUrl + "&s=" + searchTerm, HttpMethod.GET, null,
-						new ParameterizedTypeReference<List<SearchResult>>() {});
-				List<SearchResult> searchResults = responseEntity.getBody();
-				return searchResults;
+		// TODO Extract "&s=" and &type=movie into the properties file
+		// TODO Enable other pages
+		ResponseEntity<SearchResult> responseEntity =
+				restTemplate.exchange(apiUrl + "&s=" + searchTerm + "&type=movie&page=1",
+						HttpMethod.GET, null,
+						new ParameterizedTypeReference<SearchResult>() {});
+				SearchResult theSearchResult = responseEntity.getBody();
+				return theSearchResult;
 	}
 }
