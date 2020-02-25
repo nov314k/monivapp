@@ -126,11 +126,18 @@ public class MovieController {
 	@GetMapping("/detail")
 	public String detailMovie(Model theModel, @RequestParam("movieId") int theId) {
 		
-		Movie theMovie = movieService.getMovie(theId);	
-		theModel.addAttribute("movie", theMovie);
+		Movie theMovie = movieService.getMovie(theId);
 		Detail theDetail = apiService.getDetail(formatTitle(theMovie.getTitle()));
 		theModel.addAttribute("detail", theDetail);
 		return "movie/detail";
+	}
+	
+	@GetMapping("/preview")
+	public String previewMovie(Model theModel, @RequestParam("imdbId") String imdbId) {
+		
+		Detail theDetail = apiService.getPreview(imdbId);
+		theModel.addAttribute("detail", theDetail);
+		return "search/preview";
 	}
 	
 	@GetMapping("/addForm")
