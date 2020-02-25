@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +25,7 @@ import com.monivapp.entity.Action;
 import com.monivapp.entity.Movie;
 import com.monivapp.service.ActionService;
 import com.monivapp.service.MovieService;
+import com.monivapp.utilities.Helpers;
 
 @RestController
 //TODO Adjust CrossOrigin policy after testing
@@ -45,7 +45,6 @@ public class MovieRestController {
 	
 	private String keywordVoted;
 	private String keywordAdded;
-	private Authentication authentication;
 	private String currentPrincipalName;
 
 	private int numofRecentVotes;
@@ -60,13 +59,6 @@ public class MovieRestController {
 
 		keywordVoted = env.getProperty("keyword.voted");
 		keywordAdded = env.getProperty("keyword.added");
-		
-		authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication == null) {
-			currentPrincipalName = env.getProperty("user.anonymous");
-		} else {
-			currentPrincipalName = authentication.getName();
-		}
 		
 		maxNumofAllowedRecentVotes = Integer.parseInt(
 				env.getProperty("maxNumofAllowedRecentVotes"));
@@ -93,6 +85,8 @@ public class MovieRestController {
 	@PostMapping("/movies")
 	public Movie addMovie (@RequestBody Movie theMovie) {
 		
+		
+		
 		// NOTE No title checks are done here (some come from search, some assumed OK)
 		// TODO Add checks for duplicate titles (movies)
 		if (isAddingQuotaExceeded()) {
@@ -109,7 +103,7 @@ public class MovieRestController {
 			theMovie.setId(0);
 			theMovie.setVotes(0);
 			movieService.saveMovie(theMovie);
-			Action theAction = new Action(currentPrincipalName, keywordAdded,
+			Action theAction = new Action(Helpers.getCurrentPrincipalName(), keywordAdded,
 					theMovie.getId(), getTodaysDate());
 			actionService.saveAction(theAction);
 		}
