@@ -22,12 +22,23 @@ public class Movie {
 	@Column(name="votes")
 	private int votes;
 	
+	public String getParametrizedTitle() {
+		
+		return this.getTitle().replace(" ", "+").toLowerCase();
+	}
+	
+	private String sanitizeTitle(String title) {
+		
+		return title.replace("&", "");
+	}
+	
 	public Movie() {
 		
 	}
 	
 	public Movie(String title, int votes) {
-		this.title = title;
+		
+		this.title = this.sanitizeTitle(title);
 		this.votes = votes;
 	}
 
@@ -44,6 +55,7 @@ public class Movie {
 	}
 
 	public void setTitle(String title) {
+		title = this.sanitizeTitle(title);
 		this.title = title;
 	}
 
