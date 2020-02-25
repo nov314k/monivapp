@@ -76,6 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.httpBasic()
 			
+			// NOTE Required by the Angular app
 			.and()
 			.csrf().disable()
 			
