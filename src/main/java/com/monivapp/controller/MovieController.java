@@ -61,9 +61,9 @@ public class MovieController {
 		theModel.addAttribute("movies", theMovies);
 		
 		int numofRecentVotes = actionService.getNumofRecentActions(
-				currentPrincipalName, keywordVoted, Helpers.getFromDate());
+				currentPrincipalName, keywordVoted, Helpers.getRecentFromDate());
 		int numofRecentAdditions = actionService.getNumofRecentActions(
-				currentPrincipalName, keywordAdded, Helpers.getFromDate());
+				currentPrincipalName, keywordAdded, Helpers.getRecentFromDate());
 		
 		// Calculate remaining votes
 		int maxNumofAllowedRecentVotes = Integer.parseInt(
@@ -128,7 +128,7 @@ public class MovieController {
 	public String detailMovie(Model theModel, @RequestParam("movieId") int theId) {
 		
 		Movie theMovie = movieService.getMovie(theId);
-		Detail theDetail = apiService.getDetail(Helpers.formatTitle(theMovie.getTitle()));
+		Detail theDetail = apiService.getDetail(theMovie.getParametrizedTitle());
 		theModel.addAttribute("detail", theDetail);
 		return "movie/detail";
 	}
