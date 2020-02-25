@@ -22,13 +22,13 @@ public class SearchController {
 	@Autowired
 	private ApiService apiService;
 	
-	@GetMapping("/search")
+	@GetMapping("/showForm")
 	public String showForm(Model theModel) {
 		theModel.addAttribute("searchResult", new SearchResult());
 		return "search/searchForm";
 	}
 
-	@PostMapping("/search")
+	@PostMapping("/searchOmdb")
 	public String submitForm(@ModelAttribute("searchResult") SearchResult searchResult,
 			BindingResult result, ModelMap model) {
 		
