@@ -4,29 +4,28 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SearchResult {
+public class SearchResultMovie {
 
 	@JsonProperty("Title")
 	private String title;
 	
 	@JsonProperty("Year")
 	private String year;
-		
-	@JsonProperty("Poster")
-	private String poster;
-	
+			
 	@JsonProperty("imdbID")
 	private String imdbId;
 	
 	@JsonProperty("Type")
 	private String type;
 	
-	public SearchResult() {
+	@JsonProperty("Poster")
+	private String poster;
+	
+	public SearchResultMovie() {
 		
 	}
 
-	public SearchResult(String title, String year, String poster, String imdbId, String type) {
-
+	public SearchResultMovie(String title, String year, String poster, String imdbId, String type) {
 		this.title = title;
 		this.year = year;
 		this.poster = poster;
@@ -76,7 +75,7 @@ public class SearchResult {
 
 	@Override
 	public String toString() {
-		return "SearchResult [title=" + title + ", year=" + year + ", poster=" + poster + ", imdbId=" + imdbId
+		return "SearchResultMovie [title=" + title + ", year=" + year + ", poster=" + poster + ", imdbId=" + imdbId
 				+ ", type=" + type + "]";
 	}
 }
