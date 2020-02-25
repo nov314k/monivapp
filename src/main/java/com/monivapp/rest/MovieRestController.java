@@ -99,6 +99,13 @@ public class MovieRestController {
 			throw new MovieAddingQuotaException(
 					"You cannot add any more movies (quota exceeded)");
 		} else {
+			List<Movie> existingMovies = movieService.getMovies();
+			for (Movie eM : existingMovies ) {
+				if (eM.getTitle().equals(theMovie.getTitle())) {
+					throw new MovieAddingQuotaException(
+						"Movie with the same title has already been suggested");
+				}
+			}
 			theMovie.setId(0);
 			theMovie.setVotes(0);
 			movieService.saveMovie(theMovie);
