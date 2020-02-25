@@ -30,11 +30,9 @@
 
 	<!-- "Suggest a movie to watch" button, and "Sign out" button -->	
 	<form:form action="${pageContext.request.contextPath}/logout" method="POST" class="form-horizontal">
-		
-		<!-- 
-		<a href="${pageContext.request.contextPath}/search/searchForm" class="btn btn-primary btn-sm">
-				Search OMDB (experimental)</a>
-		-->
+		 
+		<a href="${pageContext.request.contextPath}/search/search" class="btn btn-primary btn-sm">
+				Search OMDB</a>
 		
 		<!-- TODO Do all the logic in the controller -->
 		<c:choose>
