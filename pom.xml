@@ -129,14 +129,18 @@
 		<version>2.3.0</version>
 	</dependency>
 	
-	<!-- JUnit -->
+	<!-- TESTING -->
+	<!-- <dependency><groupId>junit</groupId><artifactId>junit</artifactId><version>3.8.1</version><scope>test</scope></dependency>
+	
 	<dependency>
-		<groupId>junit</groupId>
-		<artifactId>junit</artifactId>
-		<version>3.8.1</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
 		<scope>test</scope>
+		<version>2.2.4.RELEASE</version>
 	</dependency>
 	
+	 -->
+
 </dependencies>
 
 <build>
