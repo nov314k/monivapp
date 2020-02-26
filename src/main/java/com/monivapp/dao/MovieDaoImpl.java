@@ -72,9 +72,9 @@ public class MovieDaoImpl implements MovieDao {
 		List<Movie> existingMovies = getMovies();
 		for (Movie eM : existingMovies ) {
 			if (eM.getTitle().equals(title)) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 }
