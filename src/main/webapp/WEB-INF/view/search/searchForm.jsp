@@ -54,7 +54,7 @@
 							<small class="font-italic">${tempMovie.year}</small>
 							<br />
 							<br />
-							<a href="${pageContext.request.contextPath}/movie/addForm?title=${tempMovie.title}"
+							<a href="${pageContext.request.contextPath}/movie/addForm?confirmMessage=yes?&title=${tempMovie.title}"
 								class="btn btn-primary btn-sm">
 								Suggest this movie!</a>
 							&nbsp;

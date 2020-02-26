@@ -129,11 +129,14 @@ public class MovieController {
 	}
 	
 	@GetMapping("/addForm")
-	public String showAddForm(Model theModel, @RequestParam("title") String title) {
+	public String showAddForm(Model theModel,
+			@RequestParam("confirmMessage") String confirmMessage,
+			@RequestParam("title") String title) {
 		
 		Movie theMovie = new Movie();
 		theMovie.setTitle(title);
 		theModel.addAttribute("movie", theMovie);
+		theModel.addAttribute("confirmMessage", confirmMessage);
 		return "movie/addForm";
 	}
 	

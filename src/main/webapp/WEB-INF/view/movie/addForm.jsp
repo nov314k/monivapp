@@ -33,6 +33,12 @@ You can also <a href="${pageContext.request.contextPath}/search/showForm">search
 			${errorMessage}
 		</div>
 	</c:if>
+	
+	<c:if test="${confirmMessage == 'yes'}">
+		<div class="alert alert-info">
+			Please confirm the chosen movie
+		</div>
+	</c:if>
 
 	<form:hidden path="id" />
 
