@@ -22,14 +22,19 @@ public class Movie {
 	@Column(name="votes")
 	private int votes;
 	
-	public String getParametrizedTitle() {
+	// Note Using "getParametrizedTitle()" adds the field to JSON!
+	public String retrieveParametrizedTitle() {
 		
 		return this.getTitle().replace(" ", "+").toLowerCase();
 	}
 	
-	private String sanitizeTitle(String title) {
+	private String sanitizeTitleString(String title) {
 		
-		return title.replace("&", "");
+		return title.replace("&", "").trim();
+	}
+	
+	public void sanitizeTitle() {
+		this.setTitle(sanitizeTitleString(this.getTitle()));
 	}
 	
 	public Movie() {
@@ -38,7 +43,7 @@ public class Movie {
 	
 	public Movie(String title, int votes) {
 		
-		this.title = this.sanitizeTitle(title);
+		this.title = sanitizeTitleString(title);
 		this.votes = votes;
 	}
 
@@ -55,7 +60,7 @@ public class Movie {
 	}
 
 	public void setTitle(String title) {
-		title = this.sanitizeTitle(title);
+		title = sanitizeTitleString(title);
 		this.title = title;
 	}
 
