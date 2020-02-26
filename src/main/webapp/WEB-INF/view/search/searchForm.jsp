@@ -16,6 +16,12 @@
 
 <form:form action="searchOmdb" modelAttribute="searchResult" method="post">
 
+	<c:if test="${errorMessage != null}">
+		<div class="alert alert-danger">
+			${errorMessage}
+		</div>
+	</c:if>
+
 	<form:hidden path="search" />
 	
 	<form:hidden path="totalResults" />
@@ -38,19 +44,22 @@
     	<p>Top ten search results:</p>
 		<table class="table table-bordered table-striped">
 			<c:forEach var="tempMovie" items="${search}">
-				<c:url var="previewLink" value="/movie/preview">
-					<c:param name="imdbId" value="${tempMovie.imdbId}" />
-				</c:url>
+				<c:url var="imdbLink" value="https://www.imdb.com/title/"></c:url>
 				<tr>
 					<td>
 						<img src="${tempMovie.poster}" alt="Poster link is not available" class="font-weight-italic">
 					</td>
 					<td>
-						<div class="font-weight-bold">
-							<!-- <a href="${previewLink}">${tempMovie.title}</a>  -->
-							${tempMovie.title}
-						</div>
-						<div class="font-weight-light">${tempMovie.year}</div>
+						<div class="font-weight-bold">${tempMovie.title}</div>
+						<div class="font-italic">${tempMovie.year}</div>
+						<p>
+							<a href="${pageContext.request.contextPath}/movie/addForm?title=${tempMovie.title}"
+								class="btn btn-primary btn-sm">
+								Suggest this movie!</a>
+						</p>
+						<p>
+							<a href="${imdbLink}${tempMovie.imdbId}" target="_blank">View IMDb movie page (external)</a>
+						</p>
 					</td>
 				</tr>
 			</c:forEach>					
