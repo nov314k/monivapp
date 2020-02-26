@@ -19,7 +19,6 @@ public class Helpers {
 	public static final String ACTION_VOTED = "VOTED";
 	public static final String DATE_FORMAT = "yyyy-MM-dd";
 	public static final String USERNAME_ANONYMOUS = "ANON";
-	public static final String OMDB_API_URL = "https://www.omdbapi.com/?apikey=553bde87";
 	
 
 	public static String getRecentFromDate() {
