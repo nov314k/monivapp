@@ -2,11 +2,6 @@
 
 ## Action TODOs & FOCUS
 
-## Git
-
-Commit
-Create vXY if required
-
 ## Update application.properties 
 
 jdbc.url=jdbc:mysql://us-cdbr-iron-east-04.cleardb.net:3306/ad_50bca53daa359fe?useSSL=false
@@ -23,6 +18,11 @@ Run As > Run on Server
 Stop the server
 Delete the old war file
 Run As > Maven install
+
+## Git
+
+Commit
+Create vXY if required
 
 ## Push to CF
 
