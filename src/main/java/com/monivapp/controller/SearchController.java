@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.monivapp.entity.Movie;
 import com.monivapp.entity.SearchResult;
 import com.monivapp.service.ApiService;
 import com.monivapp.utilities.Helpers;
