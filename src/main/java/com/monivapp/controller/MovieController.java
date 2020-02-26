@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.monivapp.entity.Action;
 import com.monivapp.entity.Detail;
 import com.monivapp.entity.Movie;
-import com.monivapp.rest.MovieAddException;
-import com.monivapp.rest.MovieNotFoundException;
 import com.monivapp.service.ActionService;
 import com.monivapp.service.ApiService;
 import com.monivapp.service.MovieService;
