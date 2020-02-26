@@ -40,7 +40,6 @@ public class MovieRestExceptionHandler {
 		return new ResponseEntity<>(error, HttpStatus.PRECONDITION_FAILED);
 	}
 	
-	// TODO Consider combining with handleException(MovieAddException exc) 
 	@ExceptionHandler
 	public ResponseEntity<MovieErrorResponse> handleException(
 			MovieVoteQuotaException exc) {
