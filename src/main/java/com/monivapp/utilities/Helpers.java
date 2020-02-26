@@ -11,6 +11,7 @@ import com.monivapp.service.ActionService;
 
 public class Helpers {
 	
+	// TODO Move these to Settings class (new)
 	public static final int MAX_VOTES = 3;
 	public static final int MAX_SUGGESTIONS = 3;
 	public static final int RECENT_MONTHS = -1;

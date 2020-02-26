@@ -58,4 +58,11 @@ public class MovieServiceImpl implements MovieService {
 		
 		movieDao.vote(theId);
 	}
+	
+	@Override
+	@Transactional
+	public boolean isTitleDuplicate(String title) {
+		
+		 return movieDao.isTitleDuplicate(title);
+	}
 }

@@ -17,4 +17,6 @@ public interface MovieDao {
 	public void updateMovie(Movie theMovie);
 	
 	public void vote(int theId);
+	
+	public boolean isTitleDuplicate(String title);
 }

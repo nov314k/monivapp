@@ -17,4 +17,6 @@ public interface MovieService {
 	public void updateMovie(Movie theMovie);
 
 	public void vote(int theId);
+	
+	public boolean isTitleDuplicate(String title);
 }

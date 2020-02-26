@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.monivapp.entity.Movie;
+import com.monivapp.rest.MovieAddException;
 
 @Repository
 public class MovieDaoImpl implements MovieDao {
@@ -61,8 +62,19 @@ public class MovieDaoImpl implements MovieDao {
 	@Override
 	public void vote(int theId) {
 		
-		Movie theMovie = this.getMovie(theId);
+		Movie theMovie = getMovie(theId);
 		theMovie.setVotes(theMovie.getVotes() + 1);
 		this.saveMovie(theMovie);
+	}
+	
+	@Override
+	public boolean isTitleDuplicate(String title) {
+		List<Movie> existingMovies = getMovies();
+		for (Movie eM : existingMovies ) {
+			if (eM.getTitle().equals(title)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

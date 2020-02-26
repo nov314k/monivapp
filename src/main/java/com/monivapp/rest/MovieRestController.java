@@ -58,14 +58,10 @@ public class MovieRestController {
 		} else if (theMovie.getTitle() == null || theMovie.getTitle() == "") {
 			throw new MovieAddException(
 					"Movie with no title cannot be added");
+		} else if (movieService.isTitleDuplicate(theMovie.getTitle())) {
+			throw new MovieAddException(
+					"Movie with the same title has already been suggested");
 		} else {
-			List<Movie> existingMovies = movieService.getMovies();
-			for (Movie eM : existingMovies ) {
-				if (eM.getTitle().equals(theMovie.getTitle())) {
-					throw new MovieAddException(
-						"Movie with the same title has already been suggested");
-				}
-			}
 			theMovie.setId(0);
 			theMovie.setVotes(0);
 			movieService.saveMovie(theMovie);
