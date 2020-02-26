@@ -34,7 +34,7 @@ You can also <a href="${pageContext.request.contextPath}/search/showForm">search
 		</div>
 	</c:if>
 	
-	<c:if test="${confirmMessage == 'yes'}">
+	<c:if test="${confirmMessage != null}">
 		<div class="alert alert-info">
 			Please confirm the chosen movie
 		</div>
