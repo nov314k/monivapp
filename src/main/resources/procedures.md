@@ -32,6 +32,8 @@ Create vXY if required
 
 "d:/program files/cloud foundry/cf" login -a https://api.run.pivotal.io
 
+## Change back to MASTER
+
 ## Change back to 
 
 jdbc.url=jdbc:mysql://localhost:3306/monivapp?useSSL=false

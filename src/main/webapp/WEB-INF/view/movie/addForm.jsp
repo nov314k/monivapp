@@ -21,8 +21,10 @@
 
 <p>
 Movies not found in <a href="http://omdbapi.com" target="_blank">omdbapi.com</a>
-can also be suggested.
+can also be suggested.<br />
+You can also <a href="${pageContext.request.contextPath}/search/showForm">search OMDB</a>.
 </p>
+
 
 <form:form action="add" modelAttribute="movie" method="POST">
 
