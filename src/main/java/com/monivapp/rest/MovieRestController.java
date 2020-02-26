@@ -18,7 +18,6 @@ import com.monivapp.entity.Action;
 import com.monivapp.entity.Movie;
 import com.monivapp.service.ActionService;
 import com.monivapp.service.MovieService;
-import com.monivapp.settings.Settings;
 import com.monivapp.utilities.Helpers;
 
 @RestController
@@ -33,7 +32,7 @@ public class MovieRestController {
 	
 	@Autowired
 	private ActionService actionService;
-		
+	
 	@GetMapping("/movies")
 	public List<Movie> getMovies() {
 		
@@ -56,6 +55,9 @@ public class MovieRestController {
 		if (Helpers.isAddingQuotaExceeded(actionService)) {
 			throw new MovieAddException(
 					"You cannot suggest any more movies (quota exceeded)");
+		} else if (theMovie.getTitle() == null || theMovie.getTitle() == "") {
+			throw new MovieAddException(
+					"Movie with no title cannot be added");
 		} else {
 			List<Movie> existingMovies = movieService.getMovies();
 			for (Movie eM : existingMovies ) {
@@ -68,12 +70,13 @@ public class MovieRestController {
 			theMovie.setVotes(0);
 			movieService.saveMovie(theMovie);
 			Action theAction = new Action(Helpers.getCurrentPrincipalName(),
-					Settings.ACTION_ADDED, theMovie.getId(), Helpers.getTodaysDate());
+					Helpers.ACTION_ADDED, theMovie.getId(), Helpers.getTodaysDate());
 			actionService.saveAction(theAction);
 		}
 		return theMovie;
 	}
 	
+	// TODO Remove after testing (for testing only)
 	@PutMapping("/movies")
 	public Movie updateMovie (@RequestBody Movie theMovie) {
 		
@@ -94,7 +97,7 @@ public class MovieRestController {
 		} else {
 			movieService.vote(movieId);
 			Action theAction = new Action(Helpers.getCurrentPrincipalName(),
-					Settings.ACTION_VOTED, movieId, Helpers.getTodaysDate());
+					Helpers.ACTION_VOTED, movieId, Helpers.getTodaysDate());
 			actionService.saveAction(theAction);
 		}
 		theMovie = movieService.getMovie(movieId);
@@ -112,7 +115,7 @@ public class MovieRestController {
 		return "Deleted movie id: " + movieId; 
 	}
 	
-	// TODO Remove after testing
+	// TODO Remove after testing (for testing only)
 	@GetMapping("/movies/reset")
 	public String resetActions() {
 		
