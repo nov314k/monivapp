@@ -1,15 +1,9 @@
 package com.monivapp.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,47 +34,26 @@ public class MovieController {
 	@Autowired
 	private ApiService apiService;
 	
-	@Autowired
-	private Environment env;
-	
-	private String keywordVoted;
-	private String keywordAdded;
-	private Authentication authentication;
-	private String currentPrincipalName;
+	int numofRecentVotes;
+	int numofRecentAdditions;
 	
 	@GetMapping("/list")
 	public String listMovies(Model theModel) {
 		
-		// TODO Move all this to @PostConstruct (incl. rm this)
-		this.keywordVoted = env.getProperty("keyword.voted");
-		this.keywordAdded = env.getProperty("keyword.added");
-		this.authentication = SecurityContextHolder.getContext().getAuthentication();
-		this.currentPrincipalName = authentication.getName();
-		
 		List<Movie> theMovies = movieService.getMovies();
 		theModel.addAttribute("movies", theMovies);
 		
-		int numofRecentVotes = actionService.getNumofRecentActions(
-				currentPrincipalName, keywordVoted, Helpers.getRecentFromDate());
-		int numofRecentAdditions = actionService.getNumofRecentActions(
-				currentPrincipalName, keywordAdded, Helpers.getRecentFromDate());
+		numofRecentVotes = actionService.getNumofRecentActions(
+				Helpers.getCurrentPrincipalName(), Helpers.ACTION_VOTED,
+				Helpers.getRecentFromDate());
+		numofRecentAdditions = actionService.getNumofRecentActions(
+				Helpers.getCurrentPrincipalName(), Helpers.ACTION_ADDED,
+				Helpers.getRecentFromDate());
 		
-		// Calculate remaining votes
-		int maxNumofAllowedRecentVotes = Integer.parseInt(
-				env.getProperty("maxNumofAllowedRecentVotes"));
-		int numofRemainingVotes = maxNumofAllowedRecentVotes - numofRecentVotes;
-		theModel.addAttribute("numofRemainingVotes", numofRemainingVotes);
-				
-		// Calculate remaining movie suggestions		
-		int maxNumofAllowedRecentAdditions = Integer.parseInt(
-				env.getProperty("maxNumofAllowedRecentAdditions"));
-		int numofRemainingAdditions =
-				maxNumofAllowedRecentAdditions - numofRecentAdditions;
-		theModel.addAttribute("numofRemainingAdditions", numofRemainingAdditions);
-		
-		// TODO Do all the logic in the controller
-		// if (numofRemainingVotes > 0) {
-		//   theModel.addAttribute(...); ...
+		theModel.addAttribute("numofRemainingVotes",
+				Helpers.MAX_VOTES - numofRecentVotes);
+		theModel.addAttribute("numofRemainingAdditions",
+				Helpers.MAX_SUGGESTIONS - numofRecentAdditions);
 
 		return "movie/list";
 	}
@@ -92,8 +65,8 @@ public class MovieController {
 		// TODO Check for duplicate movies (titles)
 		
 		movieService.saveMovie(theMovie);
-		Action theAction = new Action(currentPrincipalName, keywordAdded,
-				theMovie.getId(), Helpers.getTodaysDate());
+		Action theAction = new Action(Helpers.getCurrentPrincipalName(),
+				Helpers.ACTION_ADDED, theMovie.getId(), Helpers.getTodaysDate());
 		actionService.saveAction(theAction);		
 		return "redirect:/movie/list";
 	}
@@ -104,8 +77,8 @@ public class MovieController {
 		// TODO Add quote checks (cf REST controller)
 		
 		movieService.vote(theId);
-		Action theAction = new Action(currentPrincipalName, keywordVoted, theId,
-				Helpers.getTodaysDate());
+		Action theAction = new Action(Helpers.getCurrentPrincipalName(),
+				Helpers.ACTION_VOTED, theId, Helpers.getTodaysDate());
 		actionService.saveAction(theAction);
 		return "redirect:/movie/list";
 	}	
@@ -128,7 +101,7 @@ public class MovieController {
 	public String detailMovie(Model theModel, @RequestParam("movieId") int theId) {
 		
 		Movie theMovie = movieService.getMovie(theId);
-		Detail theDetail = apiService.getDetail(theMovie.getParametrizedTitle());
+		Detail theDetail = apiService.getDetail(theMovie.retrieveParametrizedTitle());
 		theModel.addAttribute("detail", theDetail);
 		return "movie/detail";
 	}
