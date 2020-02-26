@@ -65,4 +65,11 @@ public class MovieServiceImpl implements MovieService {
 		
 		 return movieDao.isTitleDuplicate(title);
 	}
+	
+	@Override
+	@Transactional
+	public boolean isIdValid(int theId) {
+	
+		 return movieDao.isIdValid(theId);
+	}
 }
