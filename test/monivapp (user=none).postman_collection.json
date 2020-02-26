@@ -1,0 +1,1101 @@
+{
+	"info": {
+		"_postman_id": "95c376e8-73a1-4127-8486-290bcee1fa6b",
+		"name": "monivapp (user=none)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Reset actions",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/reset",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"reset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all movies",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get movie ID=1",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get movie ID=2",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get movie ID=3",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "!!! Get movie ID=1234 - ID doesn't exist",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/1234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"1234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "!!! Get movie where ID is a random string",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/randomstring",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"randomstring"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Suggest movie TITLE=\"Beta Test\" (no id, no votes)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Beta Test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "!!! Suggest movie TITLE=\"Beta Test\" (already exists)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Beta Test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Suggest movie TITLE=\"Madonna: Ciao, Italia! - Live from Italy\" (bad id, no votes)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 765,\r\n    \"title\": \"Madonna: Ciao, Italia! - Live from Italy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Suggest movie TITLE=\"What's Eating Serbia?\" (bad id, bad votes)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 777,\r\n        \"title\": \"What's Eating Serbia?\",\r\n        \"votes\": 42\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "!!! QUOTA Suggest movie TITLE=\"Spring, Summer, Fall, Winter... and Spring\"",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Spring, Summer, Fall, Winter... and Spring\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset actions",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/reset",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"reset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Suggest movie TITLE=\"Spring, Summer, Fall, Winter... and Spring\"",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Spring, Summer, Fall, Winter... and Spring\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "!!! Suggest movie TITLE=\"Tom and Jerry & The Wizard of Oz\" (remove &)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Tom and Jerry & The Wizard of Oz\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "!!! Suggest movie TITLE=BLANK",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "!!! Sugest movie TITLE=LEADING Rambo TRAILING SPACES",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \" Rambo \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sugest movie TITLE=\"Hello Ladies: The Movie\"",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Hello Ladies: The Movie\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all movies",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 48,\r\n        \"title\": \"the hero\",\r\n        \"votes\": 131\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vote ID=6 (Check ID beforehand)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/vote/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"vote",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vote ID=7 (Check ID beforehand)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/vote/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"vote",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vote ID=8 (Check ID beforehand)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/vote/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"vote",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "!!! Vote ID=1234 - ID doesn't exist",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/vote/1234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"vote",
+						"1234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "!!! Vote for a movie where ID is a random string",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/vote/asdjkasdhfajkdfh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"vote",
+						"asdjkasdhfajkdfh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "!!! QUOTA Vote ID=9 (Check ID beforehand)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/vote/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"vote",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all movies",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 48,\r\n        \"title\": \"the hero\",\r\n        \"votes\": 131\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete movies added during testing",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all movies",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 48,\r\n        \"title\": \"the hero\",\r\n        \"votes\": 131\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VARIOUS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"are you working\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/vote/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						"vote",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sugest movie TITLE=\"Hello Ladies: The Movie\" Copy",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Hello Ladies: The Movie\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 17,\r\n    \"title\": \"&\",\r\n    \"votes\": 101\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/monivapp/api/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"monivapp",
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f5d37eee-209d-4aed-90fc-1df82cb939cc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9b823992-02e8-469a-b660-e36612e55ee2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
