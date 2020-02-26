@@ -42,7 +42,7 @@ can also be suggested.
 
 	<a href="${pageContext.request.contextPath}/movie/list" class="btn btn-warning btn-sm">Cancel</a>
 	
-	<a href="${pageContext.request.contextPath}/search/showForm" class="btn btn-primary btn-sm">Search OMDB</a>
+	<!-- <a href="${pageContext.request.contextPath}/search/showForm" class="btn btn-primary btn-sm">Search OMDB</a> -->
 
 </form:form>
 </div>
