@@ -71,10 +71,20 @@ public class MovieDaoImpl implements MovieDao {
 	public boolean isTitleDuplicate(String title) {
 		List<Movie> existingMovies = getMovies();
 		for (Movie eM : existingMovies ) {
-			if (eM.getTitle().equals(title)) {
+			if (eM.getTitle().toLowerCase().equals(title.toLowerCase())) {
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean isIdValid(int theId) {
+		
+		Movie theMovie = getMovie(theId);
+		if (theMovie == null) {
+			return false;
+		}
+		return true;
 	}
 }
