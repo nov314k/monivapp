@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.monivapp.entity.Movie;
-import com.monivapp.rest.MovieAddException;
 
 @Repository
 public class MovieDaoImpl implements MovieDao {
