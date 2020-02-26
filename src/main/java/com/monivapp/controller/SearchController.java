@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.monivapp.entity.Movie;
 import com.monivapp.entity.SearchResult;
 import com.monivapp.service.ApiService;
+import com.monivapp.utilities.Helpers;
 
 @Controller
 @RequestMapping("/search")
@@ -32,16 +34,16 @@ public class SearchController {
 	public String submitForm(@ModelAttribute("searchResult") SearchResult searchResult,
 			BindingResult result, ModelMap model) {
 		
-		SearchResult theSearchResult = apiService.getSearchResult(formatTitle(searchResult.getSearchTerm()));
+		if (searchResult.getSearchTerm() == null || searchResult.getSearchTerm() == "") {
+			model.addAttribute("errorMessage", "Please enter a search term");
+			return "search/searchForm";
+		}
+		
+		SearchResult theSearchResult = apiService.getSearchResult(
+				Helpers.formatSearchTerm(searchResult.getSearchTerm()));
 		model.addAttribute("search", theSearchResult.getSearch());
 		model.addAttribute("totalResults", theSearchResult.getTotalResults());
 		model.addAttribute("response", theSearchResult.getResponse());
 	    return "search/searchForm";
-	}
-	
-	private String formatTitle(String title) {
-
-		// TODO Extract the separator symbol to the properties file
-		return title.replace(' ', '+').toLowerCase();
 	}
 }
