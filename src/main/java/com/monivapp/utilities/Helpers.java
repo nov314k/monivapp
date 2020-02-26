@@ -36,6 +36,11 @@ public class Helpers {
 		return new SimpleDateFormat(Helpers.DATE_FORMAT).format(new Date());
 	}
 	
+	public static String formatSearchTerm(String searchTerm) {
+
+		return searchTerm.replace(' ', '+').toLowerCase();
+	}
+	
 	public static String getCurrentPrincipalName() {
 	
 		Authentication authentication;	
