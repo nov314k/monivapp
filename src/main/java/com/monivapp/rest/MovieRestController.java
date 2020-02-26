@@ -83,6 +83,7 @@ public class MovieRestController {
 	@GetMapping("/movies/vote/{movieId}")
 	public Movie voteForMovie (@PathVariable int movieId) {
 		
+		// TODO Change to if (!movieService.isIdValid(theId)) {
 		Movie theMovie = movieService.getMovie(movieId);
 		if (theMovie == null) {
 			throw new MovieNotFoundException("Movie id not found: " + movieId);
