@@ -49,7 +49,6 @@ public class ApiServiceImpl implements ApiService {
 	public SearchResult getSearchResult(String searchTerm) {
 
 		// TODO Extract "&s=" and &type=movie into the properties file
-		// TODO Enable other pages
 		ResponseEntity<SearchResult> responseEntity =
 				restTemplate.exchange(apiUrl + "&s=" + searchTerm + "&type=movie&page=1",
 						HttpMethod.GET, null,
