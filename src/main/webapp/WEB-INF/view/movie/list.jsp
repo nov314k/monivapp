@@ -42,8 +42,8 @@
 					onclick="window.location.href='addForm'; return false;"
 					class="btn btn-primary btn-sm mb-3" />
 				-->
-				<a href="${pageContext.request.contextPath}/movie/addForm" class="btn btn-primary btn-sm">
-					Suggest a movie to watch</a>
+				<a href="${pageContext.request.contextPath}/movie/addForm?title=" class="btn btn-primary btn-sm">
+					Suggest a different movie to watch</a>
 		   	</c:when>
 		   	<c:otherwise>
 		   		&nbsp;
