@@ -8,22 +8,31 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.monivapp.service.ActionService;
-import com.monivapp.settings.Settings;
 
 public class Helpers {
+	
+	public static final int MAX_VOTES = 3;
+	public static final int MAX_SUGGESTIONS = 3;
+	public static final int RECENT_MONTHS = -1;
+	public static final String ACTION_ADDED = "ADDED";
+	public static final String ACTION_VOTED = "VOTED";
+	public static final String DATE_FORMAT = "yyyy-MM-dd";
+	public static final String USERNAME_ANONYMOUS = "ANON";
+	public static final String OMDB_API_URL = "https://www.omdbapi.com/?apikey=553bde87";
+	
 
 	public static String getRecentFromDate() {
 		
 		Date currentDate = new Date();
         Calendar theCalendar = Calendar.getInstance();
         theCalendar.setTime(currentDate);
-        theCalendar.add(Calendar.MONTH, Settings.RECENT_MONTHS);
-        return new SimpleDateFormat(Settings.DATE_FORMAT).format(theCalendar.getTime());
+        theCalendar.add(Calendar.MONTH, Helpers.RECENT_MONTHS);
+        return new SimpleDateFormat(Helpers.DATE_FORMAT).format(theCalendar.getTime());
 	}
 	
 	public static String getTodaysDate() {
 		
-		return new SimpleDateFormat(Settings.DATE_FORMAT).format(new Date());
+		return new SimpleDateFormat(Helpers.DATE_FORMAT).format(new Date());
 	}
 	
 	public static String getCurrentPrincipalName() {
@@ -31,10 +40,21 @@ public class Helpers {
 		Authentication authentication;	
 		authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication == null) {
-			return Settings.USERNAME_ANONYMOUS;
+			return Helpers.USERNAME_ANONYMOUS;
 		} else {
 			return authentication.getName();
 		}
+	}
+	
+	public static boolean isAddingQuotaExceeded(ActionService actionService) {
+		
+		return isQuotaExceeded(actionService, Helpers.ACTION_ADDED,
+				Helpers.MAX_SUGGESTIONS);
+	}
+	
+	public static boolean isVotingQuotaExceeded(ActionService actionService) {
+		
+		return isQuotaExceeded(actionService, Helpers.ACTION_VOTED, Helpers.MAX_VOTES);
 	}
 	
 	public static boolean isQuotaExceeded(ActionService actionService, String actionType,
@@ -48,15 +68,5 @@ public class Helpers {
 			return true;
 		}
 		return false;
-	}
-	
-	public static boolean isAddingQuotaExceeded(ActionService actionService) {
-		return isQuotaExceeded(actionService, Settings.ACTION_ADDED,
-				Settings.MAX_SUGGESTIONS);
-	}
-	
-	public static boolean isVotingQuotaExceeded(ActionService actionService) {
-		return isQuotaExceeded(actionService, Settings.ACTION_VOTED,
-				Settings.MAX_VOTES);
 	}
 }
