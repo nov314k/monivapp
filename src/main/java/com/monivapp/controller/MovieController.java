@@ -136,7 +136,9 @@ public class MovieController {
 		Movie theMovie = new Movie();
 		theMovie.setTitle(title);
 		theModel.addAttribute("movie", theMovie);
-		theModel.addAttribute("confirmMessage", confirmMessage);
+		if (confirmMessage.equals("yes")) {
+			theModel.addAttribute("showConfirmMessage", "yes");
+		}
 		return "movie/addForm";
 	}
 	
