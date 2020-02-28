@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS `movie`;
 SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE `movie` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(42) DEFAULT NULL,
+  `title` varchar(200) DEFAULT NULL,
   `votes` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
