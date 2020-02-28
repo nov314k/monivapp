@@ -40,7 +40,7 @@ jdbc.url=jdbc:mysql://localhost:3306/monivapp?useSSL=false
 jdbc.user=monivapp
 jdbc.password=koliko
 
-## Other
+## Other commands
 
 monivapp-client/dist/monivapp-client>"d:/program files/cloud foundry/cf" push monivapp-client
 Check for monivapp-client/dist/monivapp-client>Staticfile
