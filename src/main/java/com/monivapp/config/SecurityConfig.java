@@ -54,18 +54,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			// TODO Turn back on after initial Angular testing
 //			.antMatchers(HttpMethod.GET, "/api/movies").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
 //			.antMatchers(HttpMethod.GET, "/api/movies/**").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
-			.antMatchers(HttpMethod.POST, "/api/movies").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
-			.antMatchers(HttpMethod.POST, "/api/movies/**").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
-			.antMatchers(HttpMethod.GET, "/api/movies/vote").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
-			.antMatchers(HttpMethod.GET, "/api/movies/vote/**").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
+//			.antMatchers(HttpMethod.POST, "/api/movies").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
+//			.antMatchers(HttpMethod.POST, "/api/movies/**").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
+//			.antMatchers(HttpMethod.GET, "/api/movies/vote").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
+//			.antMatchers(HttpMethod.GET, "/api/movies/vote/**").hasAnyRole("VOTER", "MAINTAINER", "ADMIN")
 			
 			// TODO Remove after initial Angular testing
 			.antMatchers(HttpMethod.GET, "/api/movies").permitAll()
 			.antMatchers(HttpMethod.GET, "/api/movies/**").permitAll()
-//			.antMatchers(HttpMethod.POST, "/api/movies").permitAll()
-//			.antMatchers(HttpMethod.POST, "/api/movies/**").permitAll()
-//			.antMatchers(HttpMethod.GET, "/api/movies/vote").permitAll()
-//			.antMatchers(HttpMethod.GET, "/api/movies/vote/**").permitAll()
+			.antMatchers(HttpMethod.POST, "/api/movies").permitAll()
+			.antMatchers(HttpMethod.POST, "/api/movies/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/api/movies/vote").permitAll()
+			.antMatchers(HttpMethod.GET, "/api/movies/vote/**").permitAll()
 
 			.antMatchers(HttpMethod.PUT, "/api/movies").hasAnyRole("MAINTAINER", "ADMIN")
 			.antMatchers(HttpMethod.PUT, "/api/movies/**").hasAnyRole("MAINTAINER", "ADMIN")
